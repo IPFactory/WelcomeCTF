@@ -12,10 +12,10 @@ class CreateActLogTable extends Migration
             $table->increments('act_id');
             $table->integer('user_id');
             $table->integer('problem_id');
-            $table->tinyIncrements('is_open')->default($value = 0);
-            $table->tinyIncrements('is_solve')->default($value = 0);
-            $table->timestamp('open_at')->nullable($value = true);
-            $table->timestamp('solve_at')->nullable($value = true);
+            $table->tinyInteger('is_open')->default($value = 0);
+            $table->tinyInteger('is_solve')->default($value = 0);
+            $table->timestamp('open_at')->nullable();
+            $table->timestamp('solve_at')->nullable();
         });
     }
 

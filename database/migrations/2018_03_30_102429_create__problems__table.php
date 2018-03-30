@@ -13,16 +13,16 @@ class CreateProblemsTable extends Migration
             $table->string('name', 16);
             $table->string('category', 16);
             $table->longText('statement');
-            $table->tinyIncrements('point');
+            $table->tinyInteger('point');
             $table->longText('hint');
             $table->longText('correct_flag');
             $table->integer('solve_count')->default($value = 0);
-            $table->mediumText('first_data')->nullable($value = true);
-            $table->mediumText('second_data')->nullable($value = true);
-            $table->timestamps('make_at')->default($value = 0);
-            $table->timestamp('update_at')->nullable($value = true);
-            $table->timestamp('reserve_at')->nullable($value = true);
-            $table->timestamp('hint_open_at')->default($value = 0);
+            $table->mediumText('first_data')->nullable();
+            $table->mediumText('second_data')->nullable();
+            $table->timestamp('make_at');
+            $table->timestamp('update_at')->nullable();
+            $table->timestamp('reserve_at')->nullable();
+            $table->timestamp('hint_open_at')->nullable();
         });
     }
 

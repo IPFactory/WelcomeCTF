@@ -13,11 +13,11 @@ class CreateUsersTable extends Migration
             $table->string('login_id', 16);
             $table->string('name', 16);
             $table->string('password', 64);
-            $table->text('icon')->nullable($value = true);
-            $table->text('icon_small')->nullable($value = true);
+            $table->text('icon')->nullable();
+            $table->text('icon_small')->nullable();
             $table->integer('point')->default($value = 0);
             $table->timestamp('make_at');
-            $table->timestamp('update_at')->nullable($value = true);
+            $table->timestamp('update_at')->nullable();
         });
     }
 
