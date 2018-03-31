@@ -30,9 +30,11 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="" class="col-lg-2 control-label">Icon</label>
+							<label for="icon" class="col-lg-2 control-label">Icon</label>
 							<div class="col-lg-6">
-								<input type="file" name="" id="">
+								<img v-show="smallIcon" :src="smallIcon">
+								<input id="icon" type="file" style="display:none" v-on:change="getIconData">
+								<input type="button" value="Select Icon" class="btn btn-primary btn-lg" v-on:click="selectIcon">
 							</div>
 						</div>
 						<hr>
@@ -53,6 +55,76 @@
 	export default {
 		mounted() {
 			console.log('Component mounted.')
+		},
+		data() {
+			return {
+				icon: null,
+				smallIcon: null
+			}
+		},
+		methods: {
+			selectIcon(e) {
+				document.getElementById("icon").click();
+			},
+			getIconData(e) {
+				const fileReader = new FileReader();
+				const img = new Image();
+				fileReader.onload = (e) => {
+					img.src = e.target.result;
+				};
+				img.onload = () => {
+					this.resizeIcon(img);
+					this.resizeIcon64(img);
+				}
+
+				fileReader.readAsDataURL(e.target.files[0]);
+			},
+			resizeIcon(img) {
+				const ICON_SIZE = 512;
+				const canvas = document.createElement("canvas");
+				const ctx = canvas.getContext("2d");
+				const imgWidth = img.width;
+				const imgHeight = img.height;
+				canvas.width = canvas.height = ICON_SIZE;
+				console.log(`${imgWidth}  ${imgHeight}`)
+				let width, height, xOffset, yOffset;
+				if (imgWidth > imgHeight) {
+					width = imgWidth * (ICON_SIZE / imgHeight);
+					height = ICON_SIZE;
+					xOffset = -(width - ICON_SIZE) / 2;
+					yOffset = 0;
+				} else {
+					width = ICON_SIZE;
+					height = imgHeight * (ICON_SIZE / imgWidth);
+					yOffset = -(height - ICON_SIZE) / 2;
+					xOffset = 0;
+				}
+				ctx.drawImage(img, xOffset, yOffset, width, height);
+				this.icon = canvas.toDataURL("image/jpeg");
+			},
+			resizeIcon64(img) {
+				const ICON_SIZE = 64;
+				const canvas = document.createElement("canvas");
+				const ctx = canvas.getContext("2d");
+				const imgWidth = img.width;
+				const imgHeight = img.height;
+				canvas.width = canvas.height = ICON_SIZE;
+				console.log(`${imgWidth}  ${imgHeight}`)
+				let width, height, xOffset, yOffset;
+				if (imgWidth > imgHeight) {
+					width = imgWidth * (ICON_SIZE / imgHeight);
+					height = ICON_SIZE;
+					xOffset = -(width - ICON_SIZE) / 2;
+					yOffset = 0;
+				} else {
+					width = ICON_SIZE;
+					height = imgHeight * (ICON_SIZE / imgWidth);
+					yOffset = -(height - ICON_SIZE) / 2;
+					xOffset = 0;
+				}
+				ctx.drawImage(img, xOffset, yOffset, width, height);
+				this.smallIcon = canvas.toDataURL("image/jpeg");
+			}
 		}
 	}
 </script>
