@@ -1,3 +1,4 @@
+import Vue from "vue";
 import top from "./components/Top.vue";
 import login from "./components/Login.vue";
 import regist from "./components/Regist.vue";
@@ -8,7 +9,7 @@ import scoreboard from "./components/Scoreboard.vue";
 import logout from "./components/Logout.vue";
 import header from "./components/modules/Header.vue";
 
-Vue.component("header", header);
+Vue.component("Header", header);
 
 export default [
 	{
@@ -42,6 +43,4 @@ export default [
 		path: "/logout",
 		component: logout
 	}
-
-
-]
+];
