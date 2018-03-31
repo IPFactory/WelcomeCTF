@@ -6,8 +6,8 @@
 			<hr>
 			<p>make a first your account. and do Login.</p>
 			<p class="lead">
-				<a href="#/login" class="btn btn-primary btn-lg">Login</a>
-				<a href="#/regist" class="btn btn-primary btn-lg">Regist</a>
+				<router-link to="/login" class="btn btn-primary btn-lg">Login</router-link>
+				<router-link to="/regist" class="btn btn-primary btn-lg">Regist</router-link>
 			</p>
 		</div>
 	</div>
