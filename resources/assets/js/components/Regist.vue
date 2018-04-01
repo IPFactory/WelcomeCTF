@@ -3,46 +3,61 @@
 		<div class="jumbotron">
 			<h1 class="display-3">Regist Your WelcomeCTF Account</h1>
 			<div class="center-block">
-				<form class="form-horizontal">
+				<form class="form-horizontal" id="registForm" name="registForm" >
 					<fieldset>
 						<div class="form-group">
-							<label for="inputUserId" class="col-lg-2 control-label">User ID</label>
-							<div class="col-lg-6">
-								<input id="inputUserId" placeholder="User ID" type="text" class="form-control">
+							<div class="row">
+								<label for="inputUserId" class="col-lg-2 col-lg-offset-1 control-label">User ID</label>
+								<div class="col-lg-6">
+									<input id="inputUserId" placeholder="User ID" type="text" class="form-control" v-model="userId" maxlength="16" pattern="^[0-9A-Za-z]+$" required>
+								</div>
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="inputUserId" class="col-lg-2 control-label">User Name</label>
-							<div class="col-lg-6">
-								<input id="inputUserName" placeholder="User Name" type="text" class="form-control">
+							<div class="row">
+								<label for="inputUserName" class="col-lg-2 col-lg-offset-1 control-label">User Name</label>
+								<div class="col-lg-6">
+									<input id="inputUserName" placeholder="User Name" type="text" class="form-control" v-model="userName" maxlength="32" required>
+								</div>
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="inputPassword" class="col-lg-2 control-label">Password</label>
-							<div class="col-lg-6">
-								<input id="inputPassword" placeholder="Password" type="password" class="form-control">
+							<div class="row">
+								<label for="inputPassword" class="col-lg-2 col-lg-offset-1 control-label">Password</label>
+								<div class="col-lg-6">
+									<input id="inputPassword" placeholder="Password" type="password" class="form-control" v-model="password" maxlength="64" required>
+								</div>
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="inputPassword_again" class="col-lg-2 control-label">Password Again</label>
-							<div class="col-lg-6">
-								<input id="inputPassword_again" placeholder="Password" type="password" class="form-control">
+							<div class="row">
+								<label for="inputPassword_again" class="col-lg-2 col-lg-offset-1 control-label">Password Again</label>
+								<div class="col-lg-6">
+									<input id="inputPassword_again" placeholder="Password" type="password" class="form-control" v-model="passwordAgain" maxlength="64" pattern="^[0-9A-Za-z]+$" required>
+								</div>
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="icon" class="col-lg-2 control-label">Icon</label>
-							<div class="col-lg-6">
-								<img v-show="smallIcon" :src="smallIcon">
-								<input id="icon" type="file" style="display:none" v-on:change="getIconData">
-								<input type="button" value="Select Icon" class="btn btn-primary btn-lg" v-on:click="selectIcon">
+							<div class="row">
+								<label for="icon" class="col-lg-2 col-lg-offset-1 control-label">Icon</label>
+								<div class="col-lg-6">
+									<img v-show="smallIcon" :src="smallIcon">
+									<input id="icon" type="file" style="display:none" v-on:change="getIconData">
+									<input type="button" value="Select Icon" class="btn btn-primary btn-lg" v-on:click="selectIcon">
+								</div>
 							</div>
 						</div>
 						<hr>
 						<div class="form-group">
-							<p class="lead">
-								<input type="button" value="Regist" class="btn btn-primary btn-lg">
-								<input type="reset" value="Cancel" class="btn btn-lg">
-							</p>
+							<div class="row">
+								<div class="col-lg-offset-2">
+									<p class="lead">
+										<input type="submit" id="submit" style="display:none;">
+										<input :disabled="processing" type="button" value="Regist" class="btn btn-primary btn-lg" v-on:click.prevent="onsubmit">
+										<router-link to="/" class="btn btn-danger btn-lg">Cancel</router-link>
+									</p>
+								</div>
+							</div>
 						</div>
 					</fieldset>
 				</form>
@@ -54,15 +69,73 @@
 <script>
 	export default {
 		mounted() {
-			console.log('Component mounted.')
+			console.log("Component mounted.")
 		},
 		data() {
 			return {
-				icon: null,
-				smallIcon: null
+				userId: "",
+				userName: "",
+				password: "",
+				passwordAgain: "",
+				icon: "",
+				smallIcon: "",
+				processing: false
 			}
 		},
 		methods: {
+			onsubmit() {
+				if (this.processing) {
+					return;
+				}
+				const form = document.getElementById("registForm");
+				const submit = document.getElementById("submit");
+
+				let isCheckPassword = this.checkPassword();
+				if (form.checkValidity() && isCheckPassword) {
+					this.processing = true;
+					this.sendRegist();
+				} else if (!form.checkValidity() && !isCheckPassword) {
+					submit.click();
+				};
+			},
+			checkPassword() {
+				if (this.password !== this.passwordAgain) {
+					document.getElementById("inputPassword").setCustomValidity("パスワードが一致しません。");
+					return false
+				} else {
+					if (this.password === "" || this.passwordAgain === "") {
+						submit.click();
+						return false
+					}
+					document.getElementById("inputPassword").setCustomValidity("");
+					return true
+				}
+			},
+			sendRegist() {
+				const registParameter = {
+					userId: this.userId,
+					userName: this.userName,
+					password: this.password,
+					icon: this.icon,
+					smallIcon: this.smallIcon
+				};
+
+				const headers = {
+					"Accept": "application/json",
+					"Content-Type": "application/json"
+				};
+
+				const body = JSON.stringify(registParameter);
+
+				// APIサーバーの要件定義が不明の為仮実装
+				fetch("/api/user/regist", {method: "POST", headers, body})
+					.then((res) => {
+						this.processing = false;
+						if (res.ok) {
+							this.$router.push("/login");
+						}
+					});
+			},
 			selectIcon(e) {
 				document.getElementById("icon").click();
 			},
