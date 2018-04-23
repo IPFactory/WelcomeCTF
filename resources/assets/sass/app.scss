@@ -7,3 +7,13 @@
 
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
+
+// Jumbotoron以外でhrの色が消えてしまう為定義
+hr {
+	border-color: #d5d5d5
+}
+
+// navbar-fixed-topを使う際、要素が重なる為定義
+body {
+	padding-top: 50px
+}
