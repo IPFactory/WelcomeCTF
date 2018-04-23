@@ -2,6 +2,9 @@
 	<div class="container">
 		<div class="jumbotron">
 			<h1 class="display-3">Login Your WelcomeCTF Account</h1>
+			<div class="alert alert-danger" role="alert" v-if="notification === 'incorrect'">
+				<strong>Error! : </strong> UserID or Password is missmatched!
+			</div>
 			<form class="form-horizontal">
 				<fieldset>
 					<div class="form-group">
@@ -39,6 +42,11 @@
 	export default {
 		mounted() {
 			console.log('Component mounted.')
+		},
+		data() {
+			return {
+				"notification": "none"
+			}
 		}
 	}
 </script>
