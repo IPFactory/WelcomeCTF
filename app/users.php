@@ -4,13 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class users extends Model
+class Users extends Model
 {
-    protected $table = 'users';
-    protected $primaryKey = 'user_id';
-
-    public function index()
-    {
-
-    }
+    protected $table = "users";
+    protected $primarykey ="user_id";
 }
