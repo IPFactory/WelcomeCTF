@@ -13,6 +13,16 @@
 
 // routing the purchase to Vue-Router
 
-Route::get('/{any}', function () {
-    return view('welcome');
-})->where('any', '.*');
+Route::group(["middleware"=>"web"],function () {
+    // Social Auth
+    Route::group(["middleware"=>"jwt.auth"],function () {
+        
+    });
+    //Default Rout
+    Route::get('/{any}', function () {
+        return view('welcome');
+    })->where('any', '.*');
+});
+
+
+Route::get('/home', 'HomeController@index')->name('home');
