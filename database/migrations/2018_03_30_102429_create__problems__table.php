@@ -9,16 +9,13 @@ class CreateProblemsTable extends Migration
     public function up()
     {
         Schema::create('problems', function (Blueprint $table) {
-            $table->increments('problem_id');
-            $table->string('name', 16);
+            $table->increments('id');
+            $table->string('title');
             $table->string('category', 16);
             $table->longText('statement');
             $table->tinyInteger('point');
             $table->longText('hint');
-            $table->longText('correct_flag');
-            $table->integer('solve_count')->default($value = 0);
-            $table->mediumText('first_data')->nullable();
-            $table->mediumText('second_data')->nullable();
+            $table->string('author_id');
             $table->timestamp('make_at');
             $table->timestamp('update_at')->nullable();
             $table->timestamp('reserve_at')->nullable();
