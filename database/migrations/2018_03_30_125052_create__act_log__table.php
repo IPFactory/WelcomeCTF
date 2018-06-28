@@ -9,7 +9,7 @@ class CreateActLogTable extends Migration
     public function up()
     {
         Schema::create('act_log', function (Blueprint $table) {
-            $table->increments('act_id');
+            $table->increments('id');
             $table->integer('user_id');
             $table->integer('problem_id');
             $table->tinyInteger('is_open')->default($value = 0);
