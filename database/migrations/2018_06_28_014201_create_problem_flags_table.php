@@ -14,8 +14,7 @@ class CreateProblemFlagsTable extends Migration
     public function up()
     {
         Schema::create('problem_flags', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('problem_id');
+            $table->integer('id');
             $table->longText('correct_flag');
             $table->integer('solve_count')->default($value = 0);
             $table->timestamps();

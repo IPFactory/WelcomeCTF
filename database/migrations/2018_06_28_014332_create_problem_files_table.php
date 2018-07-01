@@ -14,8 +14,9 @@ class CreateProblemFilesTable extends Migration
     public function up()
     {
         Schema::create('problem_files', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('problem_id');
+            $table->integer('id');
+            $table->mediumText('file_first');
+            $table->mediumText('file_second');
             $table->mediumText('first_data')->nullable();
             $table->mediumText('second_data')->nullable();
             $table->timestamps();
