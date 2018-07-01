@@ -1,18 +1,47 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
-import routes from "./routes";
-import "./bootstrap";
+/*===import===*/
+import Vue 			from "vue";
+import VueRouter 	from "vue-router";
+import router 		from "./router";
+import http     	from './service/http'
 
-Vue.use(VueRouter);
+require('./bootstrap')
+require('bootstrap-sass')
 
-window.Vue = Vue;
+window.axios = require('axios');
 
-const router = new VueRouter({
-	mode: "history",
-	routes: routes
-});
+/*===component===*/
+Vue.component('vuehead', require('./head_no_auth.vue'));
+//Vue.component('vuehead', require('./head.vue'));
+Vue.component('vuebody', require('./app.vue'));
+Vue.component('vuefoot', require('./foot.vue'));
 
+/*===component on parts===*/
+/*===header===*/
+const head = new Vue({
+    router,
+    el: '#head',
+    render: h => h(require('./head_no_auth.vue')),
+    //render: h => h(require('./head.vue')),
+})
+
+/*===body===*/
 const app = new Vue({
-	el: "#app",
-	router: router
-});
+    router,
+    el: '#app',
+    create () {
+        http.init()
+    },
+    render: h => h(require('./app.vue')),
+})
+/*===footer===*/
+const foot = new Vue({
+    router,
+    el: '#foot',
+    render: h => h(require('./foot.vue')),
+})
+
+
+/*===setting===*/
+window.axios.defaults.headers.common = {
+    'X-Requested-With': 'XMLHttpRequest'
+};

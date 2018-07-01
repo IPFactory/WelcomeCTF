@@ -14,14 +14,14 @@
 // routing the purchase to Vue-Router
 
 Route::group(["middleware"=>"web"],function () {
-    // Social Auth
-    Route::group(["middleware"=>"jwt.auth"],function () {
-        
-    });
     //Default Rout
     Route::get('/{any}', function () {
-        return view('welcome');
+        return view('app');
     })->where('any', '.*');
+    // Social Auth
+    Route::group(["middleware"=>"jwt.auth"],function () {
+
+    });
 });
 
 
