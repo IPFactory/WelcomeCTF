@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Model;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
@@ -17,6 +17,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        
+        'user_id','name','email','password','role','icon','icon_small','point',
+    ];
+    protected $hidden = [
+        'password','role',
     ];
 }
