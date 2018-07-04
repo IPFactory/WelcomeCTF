@@ -10,8 +10,9 @@ require('bootstrap-sass')
 window.axios = require('axios');
 
 /*===component===*/
-Vue.component('vuehead', require('./head_no_auth.vue'));
-//Vue.component('vuehead', require('./head.vue'));
+
+Vue.component('vuehead', require('./head.vue'));
+Vue.component('vueheadauth', require('./head_auth.vue'));
 Vue.component('vuebody', require('./app.vue'));
 Vue.component('vuefoot', require('./foot.vue'));
 
@@ -20,10 +21,19 @@ Vue.component('vuefoot', require('./foot.vue'));
 const head = new Vue({
     router,
     el: '#head',
-    render: h => h(require('./head_no_auth.vue')),
-    //render: h => h(require('./head.vue')),
+    data : {
+        show : true,
+    },
+    methods :{
+        changeShow : function () {
+            if (this.show) {
+                this.show = false;
+            }else{
+                this.show = true;
+            }
+        }
+    }
 })
-
 /*===body===*/
 const app = new Vue({
     router,
@@ -39,9 +49,8 @@ const foot = new Vue({
     el: '#foot',
     render: h => h(require('./foot.vue')),
 })
-
-
-/*===setting===*/
+/*===window setting===*/
+window.head = head;
 window.axios.defaults.headers.common = {
     'X-Requested-With': 'XMLHttpRequest'
 };

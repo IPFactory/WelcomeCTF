@@ -6,9 +6,12 @@ Vue.use(VueRouter)
 export default new VueRouter({
     mode : 'history',
     routes:[
-        { path: '/'     , component:require('./components/Top.vue') },
-        { path: '/main'  , component:require('./components/Main.vue') },
-        { path: '/user' , component:require('./components/User.vue') },
+        { path: '/'                 , component:require('./components/Top.vue') },
+        { path: '/regist'            , component:require('./components/Regist.vue') },
+        { path: '/login'            , component:require('./components/Login.vue') },
+        { path: '/social/callback'  , component:require('./components/SocialCallback.vue') },
+        { path: '/main'             , component:require('./components/Main.vue') },
+        { path: '/user'             , component:require('./components/User.vue') },
     ],
     scrollBehavior (to , from, savedPosition) {
         if (savedPosition) {
