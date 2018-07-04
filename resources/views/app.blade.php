@@ -17,15 +17,16 @@
     </head>
     <body>
         <div id="head">
-            <vuehead></vuehead>
+            <vuehead v-if="show"></vuehead>
+            <vueheadauth v-else></vueheadauth>
         </div>
         <div id="app">
-            <vuebody></vuebody>
+            <vuebody v-if="show"></vuebody>
+            <vuemain v-else></vuemain>
         </div>
         <div id="foot">
             <vuefoot></vuefoot>
         </div>
     </body>
-
-    <script src="js/app.js"></script>
+    <script src="{{ mix('js/app.js') }}"></script>
 </html>
