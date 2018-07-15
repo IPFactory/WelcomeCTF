@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSocialAccountsTable extends Migration
+class CreateSocialAccountTable extends Migration
 {
     /**
      * Run the migrations.
@@ -29,6 +29,6 @@ class CreateSocialAccountsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('social_account');
+        Schema::dropIfExists('social_accounts');
     }
 }
