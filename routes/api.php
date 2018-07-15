@@ -14,13 +14,13 @@ use Illuminate\Http\Request;
 */
 
 Route::group(['middleware' => 'api'],function(){
-    Route::post('regist/digest',    'Auth/AuthenticateController@registInDigest');
-    Route::post('login/twitter',    'Auth/AuthenticateController@authenticateInTwitter');
-    Route::post('login/github',    'Auth/AuthenticateController@authenticateInTwitter');
-    Route::post('login/digest',     'Auth/AuthenticateController@authenticate');
-    Route::get('logout',            'Auth/AuthenticateController@logout')->middleware('jwt.refresh');
+    Route::post('regist/digest',    'Auth\\AuhtAuthenticateController@registInDigest');
+    Route::post('login/twitter',    'Auth\\AuthenticateController@authenticateInTwitter');
+    Route::post('login/github',     'Auth\\AuthenticateController@authenticateInTwitter');
+    Route::post('login/digest',     'Auth\\AuthenticateController@loginInDigest');
+    Route::get('logout',            'Auth\\AuthenticateController@logout')->middleware('jwt.refresh');
     Route::group(['middleware'=>'jwt.auth'],function () {
-        Route::get('me',  'Auth/AuthenticateController@getCurrentUser');
+        Route::get('me',  'Auth\\AuthenticateController@getCurrentUser');
     });
 });
 //Route::get('login/{provider}',);
