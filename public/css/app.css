@@ -8398,6 +8398,16 @@ button.close {
           align-items: center;
 }
 
+#head .container .row #title a {
+  text-decoration: none;
+  color: #636b6f;
+  font-weight: 900;
+}
+
+#head .container .row #title a:hover {
+  text-decoration: none;
+}
+
 #head .container .row #login #btn {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -8414,6 +8424,10 @@ button.close {
   text-align: center;
 }
 
+#head .container .row #login #btn a {
+  text-decoration: none;
+}
+
 #head .container .row #login #btn:hover {
   background: #7f91ad;
   color: #fff;
@@ -8424,6 +8438,14 @@ button.close {
   border-bottom: inset 5px #5c6573;
   -webkit-box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.1);
           box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.1);
+}
+
+#head .container .row #login #btn:hover a:hover {
+  text-decoration: none;
+}
+
+#head .container .row #login #btn:hover a:active {
+  text-decoration: none;
 }
 
 #head .container .row #login #btn_12 {
@@ -8442,6 +8464,10 @@ button.close {
   text-align: center;
 }
 
+#head .container .row #login #btn_12 a {
+  text-decoration: none;
+}
+
 #head .container .row #login #btn_12:hover {
   background: #7f91ad;
   color: #fff;
@@ -8452,6 +8478,14 @@ button.close {
   border-bottom: inset 5px #5c6573;
   -webkit-box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.1);
           box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.1);
+}
+
+#head .container .row #login #btn_12:hover a:hover {
+  text-decoration: none;
+}
+
+#head .container .row #login #btn_12:hover a:active {
+  text-decoration: none;
 }
 
 @media (max-width: 576px) {
@@ -8546,6 +8580,10 @@ button.close {
   }
 }
 
+#app {
+  min-height: 683px;
+}
+
 #app .container {
   margin: 0px;
   width: 100%;
@@ -8558,6 +8596,18 @@ button.close {
   padding: 0px;
 }
 
+#app .container .container #back-list {
+  margin-top: 10px 0px;
+  font-size: 20px;
+  width: 95%;
+  margin: auto;
+}
+
+#app .container .container #back-list a {
+  color: #808080;
+  text-decoration: none;
+}
+
 #app .container .container #body_band {
   background-color: #d5dce4;
   -webkit-box-shadow: 3px 5px 3px rgba(0, 0, 0, 0.1);
@@ -8567,23 +8617,120 @@ button.close {
   display: flex;
   text-decoration: none;
   border-bottom: inset 4px #c3cbd8;
-  text-align: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
 }
 
 #app .container .container #body_band p {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: 100%;
   height: 100%;
   text-shadow: 0.5px 0.5px 0.5px #808080;
-  margin: 30px 0px 0px 0px;
+  margin: 0px;
+}
+
+#app .container .container #body_band p#problem-info {
+  width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: auto;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#app .container .container #body_band #btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  -webkit-transition: .4s;
+  transition: .4s;
+  height: 125px;
+  font-size: 30px;
+  font-weight: 900;
+  color: #808080;
+}
+
+#app .container .container #body_band #btn a {
+  text-decoration: none;
+}
+
+#app .container .container #body_band #btn:hover {
+  background: #b4b4b5;
+  color: #fff;
+  text-decoration: none;
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+  z-index: 1;
+  border-bottom: inset 5px #5c6573;
+  -webkit-box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.1);
+          box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.1);
+}
+
+#app .container .container #body_band #btn:hover a:hover {
+  text-decoration: none;
+}
+
+#app .container .container #body_band #btn:hover a:active {
+  text-decoration: none;
 }
 
 #app .container .container #message {
-  margin-top: 30px;
+  margin: 70px 0px;
   width: 100%;
   text-align: center;
+}
+
+#app .container .container #message #login-button {
+  background-color: #b3c6e6;
+  display: inline-block;
+  border-radius: 15px;
+  margin: 50px 0px 100px;
+  border: inset 1px #c3cbd8;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+#app .container .container #message #login-button b {
+  width: 200px;
+  height: 50px;
+  margin: 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #fff;
+  text-shadow: 0.5px 0.5px 0.5px #808080;
+}
+
+#app .container .container #message #login-button b:hover {
+  text-shadow: 0.5px 0.5px 0.5px #808080;
+}
+
+#app .container .container #message #login-button:hover {
+  text-decoration: none;
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+  z-index: 1;
 }
 
 #app .container .container #message h1 {
@@ -8595,24 +8742,172 @@ button.close {
 #app .container .container #message p {
   width: 100%;
   text-shadow: 0.5px 0.5px 0.5px #808080;
+  -webkit-transition: .3s;
+  transition: .3s;
 }
 
 #app .container .container #message a {
   width: 100%;
   text-decoration: none;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: .3s;
+  transition: .3s;
   color: #636b6f;
   text-shadow: 0.5px 0.5px 0.5px #808080;
 }
 
-#app .container .container #message a:hover {
+#app .container .container #message a#auth_link:hover {
   color: #879094;
   text-decoration: none;
   -webkit-transform: scale(1.05);
   transform: scale(1.05);
   z-index: 1;
-  text-shadow: 2px 2px 2px #808080;
+  text-shadow: 2px 2px 2px #565656;
+}
+
+#app .container .container #message p#auth_link:hover {
+  background-color: #fff;
+  -webkit-box-shadow: 3px 5px 3px rgba(0, 0, 0, 0.3);
+          box-shadow: 3px 5px 3px rgba(0, 0, 0, 0.3);
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+  z-index: 1;
+  border-bottom: inset 4px #c3cbd8;
+  border-top: inset 0.5px #80808080;
+}
+
+#app .container .container #message #problem-zone #problem-tile #problem,
+#app .container .container #message #problem-zone #problem-tile #is-problem-solve {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#app .container .container #message #problem-zone #problem-tile #problem #problem-info,
+#app .container .container #message #problem-zone #problem-tile #is-problem-solve #problem-info {
+  -webkit-box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
+          box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
+  border: inset 1px #d5dce4;
+  border-radius: 15px;
+  margin: 10px;
+  height: 150px;
+  width: 100%;
+  -webkit-transition: .2s;
+  transition: .2s;
+  vertical-align: middle;
+  line-height: 50px;
+}
+
+#app .container .container #message #problem-zone #problem-tile #problem #problem-info p,
+#app .container .container #message #problem-zone #problem-tile #is-problem-solve #problem-info p {
+  margin: 0px;
+}
+
+#app .container .container #message #problem-zone #problem-tile #problem #problem-info {
+  background-color: #b3c6e6;
+}
+
+#app .container .container #message #problem-zone #problem-tile #is-problem-solve #problem-info {
+  background-color: #e5f7da;
+}
+
+#app .container .container #message #problem-zone #problem-tile #problem:hover,
+#app .container .container #message #problem-zone #problem-tile #is-problem-solve:hover {
+  color: #636b6f;
+  text-decoration: none;
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+  z-index: 1;
+}
+
+#app .container .container #message #problem-zone #problem-tile #is-problem-solve:hover #problem-info {
+  background-color: #f4f9f1;
+}
+
+#app .container .container #message #problem-zone #problem-tile #problem:hover #problem-info {
+  background-color: #f0f5ff;
+}
+
+#app .container .container #message form .form-group {
+  text-align: center;
+  text-shadow: 0.5px 0.5px 0.5px #808080;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#app .container .container #message form .form-group label {
+  font-size: 40px;
+  margin: 0px 10px 0px 0px;
+}
+
+#app .container .container #message form .form-group input#email,
+#app .container .container #message form .form-group input#user_id {
+  margin: 0px 0px 0px 75px;
+  border-radius: 15px;
+  text-align: center;
+  width: 350px;
+  height: 50px;
+  font-size: 30px;
+  display: inline;
+}
+
+#app .container .container #message form .form-group input#user_id {
+  margin: 0px 0px 0px 60px;
+}
+
+#app .container .container #message form .form-group input#password,
+#app .container .container #message form .form-group input#password_check {
+  border-radius: 15px;
+  text-align: center;
+  width: 350px;
+  height: 50px;
+  font-size: 30px;
+  display: inline;
+}
+
+#app .container .container #message form .form-group label#file-button {
+  color: #fff;
+  padding: 0px;
+  margin: 0 92px;
+  background-color: #b3c6e6;
+  display: inline-block;
+  border-radius: 15px;
+  width: 200px;
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: inset 1px #c3cbd8;
+  -webkit-box-shadow: 3px 5px 3px rgba(0, 0, 0, 0.1);
+          box-shadow: 3px 5px 3px rgba(0, 0, 0, 0.1);
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+#app .container .container #message form .form-group label#file-button input#icon_file {
+  display: none;
+}
+
+#app .container .container #message form .form-group label#file-button:hover {
+  text-decoration: none;
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+  z-index: 1;
 }
 
 @media (max-width: 576px) {

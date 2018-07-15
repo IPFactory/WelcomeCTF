@@ -13,7 +13,6 @@
 <script>
     export default {
         mounted() {
-            console.log('footer mounted.')
         }
     }
 </script>

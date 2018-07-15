@@ -36,9 +36,25 @@ export default {
 
     // Intercept the request to make sure the token is injected into the header.
         axios.interceptors.request.use(config => {
-            config.headers['X-CSRF-TOKEN']     = window.Laravel.csrfToken
-            config.headers['X-Requested-With'] = 'XMLHttpRequest'
+            config.headers['X-CSRF-TOKEN']      = window.Laravel.csrfToken
+            config.headers['X-Requested-With']  = 'XMLHttpRequest'
+            config.headers['Authorization']     = `Bearer ${localStorage.getItem('jwt-token')}`
+            config.headers['Session']           = window.Laravel.message
             return config
+        })
+        // Intercept the response and ...
+        axios.interceptors.response.use(response => {
+          // ...get the token from the header or response data if exists, and save it.
+          const token = response.headers['Authorization'] || response.data['token']
+          if (token) {
+            localStorage.setItem('jwt-token', token)
+          }
+
+          return response
+        }, error => {
+          // Also, if we receive a Bad Request / Unauthorized error
+          console.log(error)
+          return Promise.reject(error)
         })
     }
 }

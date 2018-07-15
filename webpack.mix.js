@@ -1,5 +1,5 @@
 let mix = require('laravel-mix');
-
+const CompressionPlugin = require('compression-webpack-plugin');
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -11,7 +11,23 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css')
-   .sourceMaps(true)
-   ;
+ mix.js('resources/assets/js/app.js', 'public/js')
+    .sass('resources/assets/sass/app.scss', 'public/css')
+    .sourceMaps(true)
+    ;
+
+if (mix.inProduction()) {
+    mix.version();
+}
+
+mix.webpackConfig({
+    plugins: [
+        new CompressionPlugin({
+            asset: "[path].gz[query]",
+            algorithm: "gzip",
+            test: /\.js$|\.css$|\.html$|\.svg$/,
+            threshold: 10240,
+            minRatio: 0.8
+        })
+    ]
+});
