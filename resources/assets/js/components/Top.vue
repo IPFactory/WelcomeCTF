@@ -1,4 +1,4 @@
-<template>
+<template >
 <div id="top">
     <div class="container">
         <div id="body_band">
@@ -10,10 +10,10 @@
             <h1>競技時間</h1>
             <p>XXXX - MM - DD hh:mm:ss ~ XXXX - MM - DD hh:mm:ss</p>
         </div>
-        <div id="body_band">
+        <div v-if="!show" id="body_band">
             <p><b>LOGIN</b></p>
         </div>
-        <div id="message">
+        <div v-if="!show" id="message">
             <p id="auth_link"><router-link to="/login" id="auth_link"><b>DIGEST</b></router-link></p>
             <p id="auth_link"><a href="#" id="auth_link"><b style="color:#1ca1f2;">Twitter</b></a></p>
             <p id="auth_link"><a href="#" id="auth_link"><b style="color:#394148;">GitHub</b></a></p>
@@ -36,9 +36,18 @@
 </template>
 
 <script>
-    export default {
-        mounted() {
-            console.log('Component mounted.')
-        }
+import userStore from '../stores/UserStore'
+
+export default {
+    props:["show"],
+    data (){
+      return {
+      }
+    },
+    methods: {
+        changeShow : function () {
+            this.show = window.authshow
+        },
     }
+}
 </script>
