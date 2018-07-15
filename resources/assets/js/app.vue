@@ -1,16 +1,18 @@
 <template>
-    <div id='app'>
-        <div class="container">
-            <router-view></router-view>
-        </div>
-    </div>
+<div class="container">
+    <router-view :show=show ref="body"></router-view>
+</div>
 </template>
 
 <script>
+export default {
+    props:["show"],
+    data (){
+      return {
+      }
+    },
+    methods: {
 
-    export default {
-        mounted() {
-            console.log('body mounted.')
-        }
     }
+}
 </script>
