@@ -12,6 +12,7 @@ class User extends Authenticatable implements JWTSubject
     use Notifiable;
 
     protected $table = "users";
+
     /**
      * The attributes that are mass assignable.
      *
@@ -21,8 +22,16 @@ class User extends Authenticatable implements JWTSubject
         'id','name','email','password','role','icon','icon_small','point',
     ];
     protected $hidden = [
-        'password','role',
+        'email','password','role',
     ];
+    protected $guarded = [
+        'id'
+    ];
+
+    /*
+    *Add function.
+    */
+    //Auth
     public function getJWTIdentifier()
     {
         return $this->getKey();

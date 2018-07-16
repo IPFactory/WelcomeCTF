@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProblemFlagsTable extends Migration
+class CreateCategoryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateProblemFlagsTable extends Migration
      */
     public function up()
     {
-        Schema::create('problem_flags', function (Blueprint $table) {
+        Schema::create('category', function (Blueprint $table) {
             $table->integer('id');
-            $table->longText('correct_flag');
-            $table->integer('solve_count')->default($value = 0);
+            $table->text('category');
             $table->timestamps();
         });
     }
@@ -28,6 +27,7 @@ class CreateProblemFlagsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('problem_flags');
+        Schema::dropIfExists('category');
+
     }
 }

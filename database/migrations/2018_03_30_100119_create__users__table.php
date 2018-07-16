@@ -10,7 +10,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 16);
+            $table->string('name', 255);
             $table->text("email");
             $table->text('password');
             $table->tinyInteger('role')->default(10)->index('index_role');
@@ -19,8 +19,6 @@ class CreateUsersTable extends Migration
             $table->integer('point')->default($value = 0);
             $table->timestamp('created_at');
             $table->timestamp('updated_at')->nullable();
-            $table->timestamp('reserved_at')->nullable();
-            $table->timestamp('hint_open_at')->nullable();
         });
     }
 

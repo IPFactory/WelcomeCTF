@@ -15,8 +15,6 @@ class CreateProblemFilesTable extends Migration
     {
         Schema::create('problem_files', function (Blueprint $table) {
             $table->integer('id');
-            $table->mediumText('file_first');
-            $table->mediumText('file_second');
             $table->mediumText('first_data')->nullable();
             $table->mediumText('second_data')->nullable();
             $table->timestamps();
@@ -30,6 +28,6 @@ class CreateProblemFilesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('problem_file');
+        Schema::dropIfExists('problem_files');
     }
 }
