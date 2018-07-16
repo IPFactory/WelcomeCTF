@@ -11,11 +11,12 @@ class CreateProblemsTable extends Migration
         Schema::create('problems', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->string('category', 16);
+            $table->integer('category');
             $table->longText('statement');
-            $table->tinyInteger('point');
+            $table->integer('point');
             $table->longText('hint');
-            $table->string('author_id');
+            $table->integer('author_id');
+            $table->longText('link');
             $table->timestamp('make_at');
             $table->timestamp('update_at')->nullable();
             $table->timestamp('reserve_at')->nullable();
