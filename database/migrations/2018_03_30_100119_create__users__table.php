@@ -19,8 +19,6 @@ class CreateUsersTable extends Migration
             $table->integer('point')->default($value = 0);
             $table->timestamp('created_at');
             $table->timestamp('updated_at')->nullable();
-            $table->timestamp('reserved_at')->nullable();
-            $table->timestamp('hint_open_at')->nullable();
         });
     }
 

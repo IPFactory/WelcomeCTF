@@ -11,6 +11,8 @@ class ActiveLogSeeder extends Seeder
      */
     public function run()
     {
-        //
+        for ($i=0;$i<500;$i++){
+            factory(App\Model\ActiveLog::class)->create();
+        }
     }
 }

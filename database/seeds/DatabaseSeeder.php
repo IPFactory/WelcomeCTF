@@ -17,5 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ProblemSeeder::class);
         $this->call(ProblemFileSeeder::class);
         $this->call(ProblemFlagSeeder::class);
+        $this->call(ActiveLogSeeder::class);
     }
 }

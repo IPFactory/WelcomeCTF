@@ -17,9 +17,9 @@ class CreateProblemsTable extends Migration
             $table->longText('hint');
             $table->integer('author_id');
             $table->longText('link');
-            $table->timestamp('make_at');
-            $table->timestamp('update_at')->nullable();
-            $table->timestamp('reserve_at')->nullable();
+            $table->timestamp('created_at');
+            $table->timestamp('updated_at')->nullable();
+            $table->timestamp('reserved_at')->nullable();
             $table->timestamp('hint_open_at')->nullable();
         });
     }
