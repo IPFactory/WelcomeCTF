@@ -28,6 +28,6 @@ class CreateProblemFlagsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('problem_flag');
+        Schema::dropIfExists('problem_flags');
     }
 }

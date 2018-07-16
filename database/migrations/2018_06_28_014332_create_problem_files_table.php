@@ -28,6 +28,6 @@ class CreateProblemFilesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('problem_file');
+        Schema::dropIfExists('problem_files');
     }
 }
