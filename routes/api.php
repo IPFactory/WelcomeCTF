@@ -14,8 +14,11 @@ use Illuminate\Http\Request;
 */
 
 Route::group(['middleware' => 'api'],function(){
+    Route::get('hoge',              'hoge@hoge');
+    Route::get('problem/all',           'Problem\\ProblemController@getProblemList');
+    Route::get('problem/{id}',      'Problem\\ProblemController@getProblemInfo');
     Route::post('regist/digest',    'Auth\\AuhtAuthenticateController@registInDigest');
-    Route::post('login/twitter',    'Auth\\AuthenticateController@authenticateInTwitter');
+    Route::post('login/twitter',    'Auth\\Authenti?cateController@authenticateInTwitter');
     Route::post('login/github',     'Auth\\AuthenticateController@authenticateInTwitter');
     Route::post('login/digest',     'Auth\\AuthenticateController@loginInDigest');
     Route::get('logout',            'Auth\\AuthenticateController@logout')->middleware('jwt.refresh');
