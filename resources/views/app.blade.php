@@ -7,7 +7,7 @@
 
         <title>Test Vue</title>
         <script>
-        m=["log","debug","warn","error","dir","trace","assert","dirxml","group","groupEnd","time","timeEnd","count","profile","profileEnd","network"];n=1;function z(){window.console={};m.forEach(function(b){(function(a){if(console[a]&&n){window.console[a]=function(d){return}}else{window.console[a]=function(){}}})(b)})}z();
+//        m=["log","debug","warn","error","dir","trace","assert","dirxml","group","groupEnd","time","timeEnd","count","profile","profileEnd","network"];n=1;function z(){window.console={};m.forEach(function(b){(function(a){if(console[a]&&n){window.console[a]=function(d){return}}else{window.console[a]=function(){}}})(b)})}z();
         </script>
         <script>
             window.Laravel = {};
