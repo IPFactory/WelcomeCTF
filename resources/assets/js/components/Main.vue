@@ -17,8 +17,8 @@
         </div>
         <div id="message" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
             <div id="problem-zone" class="col-lg-offset-1 col-lg-10">
-
                 <div id="problem-tile" class="col-lg-3" v-for="problem in problems">
+                    <transition name="fade">
                     <router-link :to='"/main/problem/"+problem.id' id="is-problem-solve" v-if=problem.isSolve>
                         <div id="problem-info" >
                             <div id="problem-title">
@@ -46,6 +46,7 @@
                             </div>
                         </div>
                     </router-link>
+                    </transition>
                 </div>
             </div>
         </div>

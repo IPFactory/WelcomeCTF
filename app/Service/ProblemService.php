@@ -36,60 +36,49 @@ WHERE problems.id = 1;
     *
     */
 public function getInfo ($id) {
-        $problems =
-        Problem::where([ ["problems.id",$id] ])
-        ->leftJoin("problem_files","problems.id","=","problem_files.id")
-        ->join("category","problems.category","=","category.id")
-        ->join("author","problems.author_id","=","author.id")
-        ->select(
-        "problems.id AS id","title","point","category.category AS category","statement","hint","author.name AS author","author.link AS twitter","problem_files.first_data AS file1","problem_files.second_data AS file2"
-        )
-        ->get();
-        // TODO: 今度見やすく
-        try{
-            $respons = [
-                "id"        =>$problems[0]->id,
-                "title"     =>$problems[0]->title,
-                "point"     =>$problems[0]->point,
-                "category"  =>$problems[0]->category,
-                "solveCount"=>ActiveLog::where("problem_id","=",$id)->count(),
-                "isSolve"   =>ActiveLog::where([["problem_id","=",$id],["user_id","=",$this->user]])->limit(1)->count(),
-                "statement" =>$problems[0]->statement,
-                "hint"      =>$problems[0]->hint,
-                "author"    =>$problems[0]->author,
-                "twitter"   =>$problems[0]->twitter,
-                "file1"     =>$problems[0]->file1,
-                "file2"     =>$problems[0]->file2,
-            ];
-        } catch (\Exception $e){
-            $respons=[['error' => 'non id'], 401];
-        }
-        return $respons;
+        $response  =   Problem::leftJoin("problem_files","problems.id","=","problem_files.id")
+                           ->join("category",   "problems.category",    "=", "category.id")
+                           ->join("author",     "problems.author_id",   "=", "author.id")
+                           ->where([ ["problems.id", "=", $id ] ])
+                           ->selectRaw(
+                "problems.id id,title,point,category.category category,statement,hint,author.name name,
+                 author.link twitter,problem_files.first_data file1,problem_files.second_data file2,
+                (".ActiveLog::where([ ['problem_id','=',$id] ])->count().") AS count,
+                (".ActiveLog::where([ ['problem_id','=',$id], ['user_id','=',$this->user] ])->limit(1)->count().") AS isSolve");
+        return $response->get();
     }
     /*
     * Info : getList
     *
-    SELECT problems.id id,title,point,category.category category
-    FROM problems INNER JOIN category ON problems.category = category.id;
+    SELECT
+        problems.id,
+        problems .title,
+        problems.point,
+        category.category,
+        (
+        CASE
+            WHEN userSolve.problem_id IS NOT NULL THEN 1
+            ELSE 0
+        END
+        ) AS isSolve
+    from
+        problems
+    LEFT OUTER JOIN
+        (SELECT problem_id , user_id FROM activeLogs WHERE user_id = 1 ORDER BY problem_id ASC) AS userSolve ON userSolve.problem_id = problems.id
+    INNER JOIN
+        category ON category.id = problems.category
+    ORDER BY problems.id ASC;
     */
+
     public function getList () {
-        $problems = Problem::join("category","problems.category","=","category.id")
-        ->select("problems.id AS id","title","point","category.category AS category")
-        ->get();
-        $respons = [];
-        foreach ($problems as $problem) {
-            array_push($respons,
-                [
-                    "id"        => $problem->id,
-                    "title"     => $problem->title,
-                    "category"  => $problem->category,
-                    "title"     => $problem->title,
-                    "point"     => $problem->point,
-                    "isSolve"   => ActiveLog::where([["problem_id","=",$problem->id],["user_id","=",$this->user]])->limit(1)->count()
-                ]
-            );
-        }
-        return $respons;
+        $sub_query = ActiveLog::select("problem_id" , "user_id")->where("user_id",$this->user)->orderBy("problem_id","ASC");
+        $respons = Problem::selectRaw(
+            "problems.id, problems .title, problems.point, category.category,
+            ( CASE WHEN userSolve.problem_id IS NOT NULL THEN 1 ELSE 0 END ) AS isSolve")
+        ->join("category","category.id","=","problems.category")->orderBy("problems.id","ASC")
+        ->leftJoin(\DB::raw("({$sub_query->toSql()}) AS userSolve"),'userSolve.problem_id', '=', 'problems.id');
+
+        return $respons->mergeBindings($sub_query->getQuery())->get();
     }
 
 }

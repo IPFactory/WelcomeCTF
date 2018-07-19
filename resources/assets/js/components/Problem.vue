@@ -62,10 +62,10 @@ export default {
     created() {
         console.log('created problem.')
         this.initializationProblem();
-        this.getProblemData()
+        this.getProblemData();
     },
     mounted () {
-        this.isAuth()
+        this.isAuth();
     },
     updated() {
         this.isAuth ()
@@ -80,7 +80,7 @@ export default {
     methods : {
         getProblemData () {
             http.get('/problem/'+this.$route.params.id,res => {
-                this.problemList = res.data
+                this.problemList = res.data[0]
             });
         },
         openHint () {

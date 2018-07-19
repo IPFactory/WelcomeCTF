@@ -29,11 +29,11 @@ class ProblemController extends Controller
     *   Control
     */
     public function getProblemInfo ($id) {
-        return response()->json($this->ProblemService->getInfo($id));
+        return $this->ProblemService->getInfo($id);
     }
 
     public function getProblemList () {
-        return response()->json($this->ProblemService->getList());
+        return $this->ProblemService->getList();
     }
 
 
