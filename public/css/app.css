@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);@charset "UTF-8";
+@charset "UTF-8";
 
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
@@ -8370,6 +8370,7 @@ button.close {
 }
 
 #head {
+  min-height: 100px;
   width: 100%;
   color: #4b4b4b;
   background-color: #b3c6e6;
@@ -8488,6 +8489,99 @@ button.close {
   text-decoration: none;
 }
 
+#head .container .row #nav-drawer {
+  position: relative;
+  /*閉じる用の薄黒カバー*/
+  /*中身*/
+  /*チェックが入ったらもろもろ表示*/
+}
+
+#head .container .row #nav-drawer .nav-unshown {
+  display: none;
+}
+
+#head .container .row #nav-drawer #nav-open {
+  display: inline-block;
+  width: 30px;
+  height: 22px;
+  vertical-align: middle;
+}
+
+#head .container .row #nav-drawer #nav-open span,
+#head .container .row #nav-drawer #nav-open span:before,
+#head .container .row #nav-drawer #nav-open span:after {
+  position: absolute;
+  height: 3px;
+  /*線の太さ*/
+  width: 25px;
+  /*長さ*/
+  border-radius: 3px;
+  background: #555;
+  display: block;
+  content: '';
+  cursor: pointer;
+}
+
+#head .container .row #nav-drawer #nav-open span:before {
+  bottom: -8px;
+}
+
+#head .container .row #nav-drawer #nav-open span:after {
+  bottom: -16px;
+}
+
+#head .container .row #nav-drawer #nav-close {
+  display: none;
+  /*はじめは隠しておく*/
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  /*全体に広がるように*/
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  opacity: 0;
+  -webkit-transition: .3s ease-in-out;
+  transition: .3s ease-in-out;
+}
+
+#head .container .row #nav-drawer #nav-content {
+  overflow: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  /*最前面に*/
+  width: 90%;
+  /*右側に隙間を作る（閉じるカバーを表示）*/
+  max-width: 330px;
+  /*最大幅（調整してください）*/
+  height: 100%;
+  background: #fff;
+  /*背景色*/
+  -webkit-transition: .3s ease-in-out;
+  transition: .3s ease-in-out;
+  /*滑らかに表示*/
+  -webkit-transform: translateX(-105%);
+  transform: translateX(-105%);
+  /*左に隠しておく*/
+}
+
+#head .container .row #nav-drawer #nav-input:checked ~ #nav-close {
+  display: block;
+  /*カバーを表示*/
+  opacity: .5;
+}
+
+#head .container .row #nav-drawer #nav-input:checked ~ #nav-content {
+  -webkit-transform: translateX(0%);
+  transform: translateX(0%);
+  /*中身を表示（右へスライド）*/
+  -webkit-box-shadow: 6px 0 25px rgba(0, 0, 0, 0.15);
+          box-shadow: 6px 0 25px rgba(0, 0, 0, 0.15);
+}
+
 @media (max-width: 576px) {
   #head {
     font-size: 20px;
@@ -8590,25 +8684,23 @@ button.close {
   padding: 0px;
 }
 
-#app .container .container {
+#app .container #top .container,
+#app .container #user .container,
+#app .container #main .container,
+#app .container #ploblem .container,
+#app .container #login .container,
+#app .container #regist .container {
   margin: 0px;
   width: 100%;
   padding: 0px;
 }
 
-#app .container .container #back-list {
-  margin-top: 10px 0px;
-  font-size: 20px;
-  width: 95%;
-  margin: auto;
-}
-
-#app .container .container #back-list a {
-  color: #808080;
-  text-decoration: none;
-}
-
-#app .container .container #body_band {
+#app .container #top .container #body_band,
+#app .container #user .container #body_band,
+#app .container #main .container #body_band,
+#app .container #ploblem .container #body_band,
+#app .container #login .container #body_band,
+#app .container #regist .container #body_band {
   background-color: #d5dce4;
   -webkit-box-shadow: 3px 5px 3px rgba(0, 0, 0, 0.1);
           box-shadow: 3px 5px 3px rgba(0, 0, 0, 0.1);
@@ -8619,7 +8711,12 @@ button.close {
   border-bottom: inset 4px #c3cbd8;
 }
 
-#app .container .container #body_band p {
+#app .container #top .container #body_band p,
+#app .container #user .container #body_band p,
+#app .container #main .container #body_band p,
+#app .container #ploblem .container #body_band p,
+#app .container #login .container #body_band p,
+#app .container #regist .container #body_band p {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -8633,20 +8730,404 @@ button.close {
   height: 100%;
   text-shadow: 0.5px 0.5px 0.5px #808080;
   margin: 0px;
+  animation: fadeIn 0.5s ease 0s 1 normal;
+  -webkit-animation: fadeIn 0.5s ease 0s 1 normal;
 }
 
-#app .container .container #body_band p#problem-info {
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+#app .container #top .container #message,
+#app .container #user .container #message,
+#app .container #main .container #message,
+#app .container #ploblem .container #message,
+#app .container #login .container #message,
+#app .container #regist .container #message {
+  margin: 70px 0px;
+  width: 100%;
+  text-align: center;
+  animation: fadeIn 0.5s ease 0s 1 normal;
+  -webkit-animation: fadeIn 0.5s ease 0s 1 normal;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+#app .container #top .container #message h1,
+#app .container #user .container #message h1,
+#app .container #main .container #message h1,
+#app .container #ploblem .container #message h1,
+#app .container #login .container #message h1,
+#app .container #regist .container #message h1 {
+  margin-top: 50px;
+  width: 100%;
+  text-shadow: 0.5px 0.5px 0.5px #808080;
+}
+
+#app .container #top .container #message p,
+#app .container #user .container #message p,
+#app .container #main .container #message p,
+#app .container #ploblem .container #message p,
+#app .container #login .container #message p,
+#app .container #regist .container #message p {
+  width: 100%;
+  text-shadow: 0.5px 0.5px 0.5px #808080;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+#app .container #top .container #message a,
+#app .container #user .container #message a,
+#app .container #main .container #message a,
+#app .container #ploblem .container #message a,
+#app .container #login .container #message a,
+#app .container #regist .container #message a {
+  width: 100%;
+  text-decoration: none;
+  -webkit-transition: .3s;
+  transition: .3s;
+  color: #636b6f;
+  text-shadow: 0.5px 0.5px 0.5px #808080;
+}
+
+#app .container #top .container #message label,
+#app .container #user .container #message label,
+#app .container #main .container #message label,
+#app .container #ploblem .container #message label,
+#app .container #login .container #message label,
+#app .container #regist .container #message label {
+  font-size: 30px;
+  text-align: left;
+  margin: auto;
+  padding: 10px 0px;
+  width: 80%;
+  text-shadow: 0.5px 0.5px 0.5px #808080;
+}
+
+#app .container #top .container #message form,
+#app .container #user .container #message form,
+#app .container #main .container #message form,
+#app .container #ploblem .container #message form,
+#app .container #login .container #message form,
+#app .container #regist .container #message form {
+  width: 40%;
+  margin: auto;
+}
+
+#app .container #top .container #message form .form-group,
+#app .container #user .container #message form .form-group,
+#app .container #main .container #message form .form-group,
+#app .container #ploblem .container #message form .form-group,
+#app .container #login .container #message form .form-group,
+#app .container #regist .container #message form .form-group {
+  text-align: center;
+  text-shadow: 0.5px 0.5px 0.5px #808080;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#app .container #top .container #message form .form-group label,
+#app .container #user .container #message form .form-group label,
+#app .container #main .container #message form .form-group label,
+#app .container #ploblem .container #message form .form-group label,
+#app .container #login .container #message form .form-group label,
+#app .container #regist .container #message form .form-group label {
+  font-size: 40px;
+  margin: 0px 10px 0px 0px;
+}
+
+#app .container #top .container #message form .form-group input#email,
+#app .container #top .container #message form .form-group input#userName,
+#app .container #user .container #message form .form-group input#email,
+#app .container #user .container #message form .form-group input#userName,
+#app .container #main .container #message form .form-group input#email,
+#app .container #main .container #message form .form-group input#userName,
+#app .container #ploblem .container #message form .form-group input#email,
+#app .container #ploblem .container #message form .form-group input#userName,
+#app .container #login .container #message form .form-group input#email,
+#app .container #login .container #message form .form-group input#userName,
+#app .container #regist .container #message form .form-group input#email,
+#app .container #regist .container #message form .form-group input#userName {
+  margin: 0px 0px 0px 75px;
+  border-radius: 15px;
+  text-align: center;
+  width: 350px;
+  height: 50px;
+  font-size: 30px;
+  display: inline;
+}
+
+#app .container #top .container #message form .form-group input#userName,
+#app .container #user .container #message form .form-group input#userName,
+#app .container #main .container #message form .form-group input#userName,
+#app .container #ploblem .container #message form .form-group input#userName,
+#app .container #login .container #message form .form-group input#userName,
+#app .container #regist .container #message form .form-group input#userName {
+  margin: 0px 0px 0px 60px;
+}
+
+#app .container #top .container #message form .form-group input#password,
+#app .container #top .container #message form .form-group input#password_check,
+#app .container #user .container #message form .form-group input#password,
+#app .container #user .container #message form .form-group input#password_check,
+#app .container #main .container #message form .form-group input#password,
+#app .container #main .container #message form .form-group input#password_check,
+#app .container #ploblem .container #message form .form-group input#password,
+#app .container #ploblem .container #message form .form-group input#password_check,
+#app .container #login .container #message form .form-group input#password,
+#app .container #login .container #message form .form-group input#password_check,
+#app .container #regist .container #message form .form-group input#password,
+#app .container #regist .container #message form .form-group input#password_check {
+  border-radius: 15px;
+  text-align: center;
+  width: 350px;
+  height: 50px;
+  font-size: 30px;
+  display: inline;
+}
+
+#app .container #top .container #message a#auth_link:hover {
+  color: #879094;
+  text-decoration: none;
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+  z-index: 1;
+  text-shadow: 2px 2px 2px #565656;
+}
+
+#app .container #top .container #message p#auth_link:hover {
+  background-color: #fff;
+  -webkit-box-shadow: 3px 5px 3px rgba(0, 0, 0, 0.3);
+          box-shadow: 3px 5px 3px rgba(0, 0, 0, 0.3);
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+  z-index: 1;
+  border-bottom: inset 4px #c3cbd8;
+  border-top: inset 0.5px #80808080;
+}
+
+#app .container #user,
+#app .container #score-board {
+  width: 60%;
+  margin: 30px auto;
+  animation: fadeIn 0.5s ease 0s 1 normal;
+  -webkit-animation: fadeIn 0.5s ease 0s 1 normal;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+#app .container #user #user-info,
+#app .container #score-board #user-info {
+  width: 100%;
+  height: 330px;
+}
+
+#app .container #user #user-info #icon,
+#app .container #score-board #user-info #icon {
+  margin: 0px;
+  width: 50%;
+  height: 300px;
+  line-height: 300px;
+  text-align: center;
+  float: left;
+}
+
+#app .container #user #user-info #icon img,
+#app .container #score-board #user-info #icon img {
+  -webkit-box-shadow: 0px 8px 11px 5px rgba(0, 0, 0, 0.1);
+          box-shadow: 0px 8px 11px 5px rgba(0, 0, 0, 0.1);
+  border: inset 4px #fff;
+  border-radius: 50%;
+  float: left;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+#app .container #user #user-info #user-name,
+#app .container #score-board #user-info #user-name {
+  display: inline-block;
+  width: 50%;
+  height: 100px;
+  line-height: 100px;
+  font-size: 50px;
+  font-weight: 900;
+  text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+}
+
+#app .container #user #user-info #user-name p,
+#app .container #score-board #user-info #user-name p {
+  text-align: center;
+}
+
+#app .container #user #user-info #info,
+#app .container #score-board #user-info #info {
+  text-align: center;
+  margin: auto;
   width: 50%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin: auto;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  font-weight: 900;
+  text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
 }
 
-#app .container .container #body_band #btn {
+#app .container #user #user-info #info span,
+#app .container #score-board #user-info #info span {
+  font-size: 30px;
+  width: 34%;
+}
+
+#app .container #user #ploblemTable,
+#app .container #user #score-table,
+#app .container #score-board #ploblemTable,
+#app .container #score-board #score-table {
+  margin-top: 20px;
+}
+
+#app .container #user #ploblemTable table,
+#app .container #user #score-table table,
+#app .container #score-board #ploblemTable table,
+#app .container #score-board #score-table table {
+  width: 100%;
+  margin: auto;
+}
+
+#app .container #user #ploblemTable table caption,
+#app .container #user #score-table table caption,
+#app .container #score-board #ploblemTable table caption,
+#app .container #score-board #score-table table caption {
+  margin: 20px 0px;
+  font-size: 50px;
+  text-align: center;
+  text-shadow: 2px 2px #00000040;
+  font-weight: 900;
+}
+
+#app .container #user #ploblemTable table tr,
+#app .container #user #score-table table tr,
+#app .container #score-board #ploblemTable table tr,
+#app .container #score-board #score-table table tr {
+  font-size: 20px;
+}
+
+#app .container #user #ploblemTable table tr th,
+#app .container #user #score-table table tr th,
+#app .container #score-board #ploblemTable table tr th,
+#app .container #score-board #score-table table tr th {
+  text-align: center;
+  text-shadow: 1px 1px #00000040;
+}
+
+#app .container #user #ploblemTable table tr td,
+#app .container #user #score-table table tr td,
+#app .container #score-board #ploblemTable table tr td,
+#app .container #score-board #score-table table tr td {
+  text-align: center;
+  text-shadow: 1px 1px #00000040;
+}
+
+#app .container #user #ploblemTable table tr #solve,
+#app .container #user #score-table table tr #solve,
+#app .container #score-board #ploblemTable table tr #solve,
+#app .container #score-board #score-table table tr #solve {
+  width: 15%;
+}
+
+#app .container #user #ploblemTable table tr #genre,
+#app .container #user #score-table table tr #genre,
+#app .container #score-board #ploblemTable table tr #genre,
+#app .container #score-board #score-table table tr #genre {
+  width: 17.5%;
+}
+
+#app .container #user #ploblemTable table tr #point,
+#app .container #user #score-table table tr #point,
+#app .container #score-board #ploblemTable table tr #point,
+#app .container #score-board #score-table table tr #point {
+  width: 17.5%;
+}
+
+#app .container #user #ploblemTable table #table1,
+#app .container #user #score-table table #table1,
+#app .container #score-board #ploblemTable table #table1,
+#app .container #score-board #score-table table #table1 {
+  background-color: #b3b3b32e;
+  border-top: solid #fff 1px;
+}
+
+#app .container #user #ploblemTable table #table0,
+#app .container #user #score-table table #table0,
+#app .container #score-board #ploblemTable table #table0,
+#app .container #score-board #score-table table #table0 {
+  background-color: #b3b3b30d;
+  border-top: solid #fff 1px;
+}
+
+#app .container #main .container #btn {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -8665,11 +9146,33 @@ button.close {
   color: #808080;
 }
 
-#app .container .container #body_band #btn a {
+#app .container #main .container #btn a {
+  animation: fadeIn 0.5s ease 0s 1 normal;
+  -webkit-animation: fadeIn 0.5s ease 0s 1 normal;
   text-decoration: none;
 }
 
-#app .container .container #body_band #btn:hover {
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+#app .container #main .container #btn:hover {
   background: #b4b4b5;
   color: #fff;
   text-decoration: none;
@@ -8681,102 +9184,16 @@ button.close {
           box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.1);
 }
 
-#app .container .container #body_band #btn:hover a:hover {
+#app .container #main .container #btn:hover a:hover {
   text-decoration: none;
 }
 
-#app .container .container #body_band #btn:hover a:active {
+#app .container #main .container #btn:hover a:active {
   text-decoration: none;
 }
 
-#app .container .container #message {
-  margin: 70px 0px;
-  width: 100%;
-  text-align: center;
-}
-
-#app .container .container #message #login-button {
-  background-color: #b3c6e6;
-  display: inline-block;
-  border-radius: 15px;
-  margin: 50px 0px 100px;
-  border: inset 1px #c3cbd8;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-#app .container .container #message #login-button b {
-  width: 200px;
-  height: 50px;
-  margin: 0px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  color: #fff;
-  text-shadow: 0.5px 0.5px 0.5px #808080;
-}
-
-#app .container .container #message #login-button b:hover {
-  text-shadow: 0.5px 0.5px 0.5px #808080;
-}
-
-#app .container .container #message #login-button:hover {
-  text-decoration: none;
-  -webkit-transform: scale(1.05);
-  transform: scale(1.05);
-  z-index: 1;
-}
-
-#app .container .container #message h1 {
-  margin-top: 50px;
-  width: 100%;
-  text-shadow: 0.5px 0.5px 0.5px #808080;
-}
-
-#app .container .container #message p {
-  width: 100%;
-  text-shadow: 0.5px 0.5px 0.5px #808080;
-  -webkit-transition: .3s;
-  transition: .3s;
-}
-
-#app .container .container #message a {
-  width: 100%;
-  text-decoration: none;
-  -webkit-transition: .3s;
-  transition: .3s;
-  color: #636b6f;
-  text-shadow: 0.5px 0.5px 0.5px #808080;
-}
-
-#app .container .container #message a#auth_link:hover {
-  color: #879094;
-  text-decoration: none;
-  -webkit-transform: scale(1.05);
-  transform: scale(1.05);
-  z-index: 1;
-  text-shadow: 2px 2px 2px #565656;
-}
-
-#app .container .container #message p#auth_link:hover {
-  background-color: #fff;
-  -webkit-box-shadow: 3px 5px 3px rgba(0, 0, 0, 0.3);
-          box-shadow: 3px 5px 3px rgba(0, 0, 0, 0.3);
-  -webkit-transform: scale(1.05);
-  transform: scale(1.05);
-  z-index: 1;
-  border-bottom: inset 4px #c3cbd8;
-  border-top: inset 0.5px #80808080;
-}
-
-#app .container .container #message #problem-zone #problem-tile #problem,
-#app .container .container #message #problem-zone #problem-tile #is-problem-solve {
+#app .container #main .container #problem-zone #problem-tile #problem,
+#app .container #main .container #problem-zone #problem-tile #is-problem-solve {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -8785,8 +9202,8 @@ button.close {
           align-items: center;
 }
 
-#app .container .container #message #problem-zone #problem-tile #problem #problem-info,
-#app .container .container #message #problem-zone #problem-tile #is-problem-solve #problem-info {
+#app .container #main .container #problem-zone #problem-tile #problem #problem-info,
+#app .container #main .container #problem-zone #problem-tile #is-problem-solve #problem-info {
   -webkit-box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
           box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
   border: inset 1px #d5dce4;
@@ -8798,23 +9215,46 @@ button.close {
   transition: .2s;
   vertical-align: middle;
   line-height: 50px;
+  animation: fadeIn 0.2s ease 0s 1 normal;
+  -webkit-animation: fadeIn 0.2s ease 0s 1 normal;
+  text-decoration: none;
 }
 
-#app .container .container #message #problem-zone #problem-tile #problem #problem-info p,
-#app .container .container #message #problem-zone #problem-tile #is-problem-solve #problem-info p {
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+#app .container #main .container #problem-zone #problem-tile #problem #problem-info p,
+#app .container #main .container #problem-zone #problem-tile #is-problem-solve #problem-info p {
   margin: 0px;
 }
 
-#app .container .container #message #problem-zone #problem-tile #problem #problem-info {
+#app .container #main .container #problem-zone #problem-tile #problem #problem-info {
   background-color: #b3c6e6;
 }
 
-#app .container .container #message #problem-zone #problem-tile #is-problem-solve #problem-info {
+#app .container #main .container #problem-zone #problem-tile #is-problem-solve #problem-info {
   background-color: #e5f7da;
 }
 
-#app .container .container #message #problem-zone #problem-tile #problem:hover,
-#app .container .container #message #problem-zone #problem-tile #is-problem-solve:hover {
+#app .container #main .container #problem-zone #problem-tile #problem:hover,
+#app .container #main .container #problem-zone #problem-tile #is-problem-solve:hover {
   color: #636b6f;
   text-decoration: none;
   -webkit-transform: scale(1.05);
@@ -8822,17 +9262,234 @@ button.close {
   z-index: 1;
 }
 
-#app .container .container #message #problem-zone #problem-tile #is-problem-solve:hover #problem-info {
+#app .container #main .container #problem-zone #problem-tile #is-problem-solve:hover #problem-info {
   background-color: #f4f9f1;
 }
 
-#app .container .container #message #problem-zone #problem-tile #problem:hover #problem-info {
+#app .container #main .container #problem-zone #problem-tile #problem:hover #problem-info {
   background-color: #f0f5ff;
 }
 
-#app .container .container #message form .form-group {
-  text-align: center;
+#app .container #ploblem .container #back-list {
+  font-size: 20px;
+  width: 80%;
+  margin: auto;
+}
+
+#app .container #ploblem .container #back-list a {
+  color: #808080;
+  text-decoration: none;
   text-shadow: 0.5px 0.5px 0.5px #808080;
+}
+
+#app .container #ploblem .container #body_band p#problem-info {
+  font-size: 60px;
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: auto;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#app .container #ploblem .container #body_band p#problem-info span#info {
+  font-size: 30px;
+  width: 40%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  animation: fadeIn 0.5s ease 0s 1 normal;
+  -webkit-animation: fadeIn 0.5s ease 0s 1 normal;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+#app .container #ploblem .container #data {
+  min-height: 180px;
+  animation: fadeIn 0.2s ease 0s 1 normal;
+  -webkit-animation: fadeIn 0.2s ease 0s 1 normal;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+#app .container #ploblem .container #code-zone {
+  background: #808080;
+  color: #000;
+  font-size: 20px;
+  font-weight: bolder;
+}
+
+#app .container #ploblem .container #code-zone div {
+  padding: 20px 0px;
+  text-align: left;
+  margin: auto;
+  overflow: scroll;
+  width: 80%;
+}
+
+#app .container #ploblem .container #hint {
+  background: #e1efd9;
+  color: #000;
+  font-size: 20px;
+  animation: fadeIn 2s ease 0s 1 normal;
+  -webkit-animation: fadeIn 2s ease 0s 1 normal;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+#app .container #ploblem .container #hint div {
+  padding: 20px 0px;
+  text-align: center;
+  margin: auto;
+  overflow: scroll;
+  width: 80%;
+}
+
+#app .container #ploblem .container #file {
+  min-height: 160px;
+  width: 80%;
+  color: #000;
+  font-size: 20px;
+  margin: auto;
+}
+
+#app .container #ploblem .container #file div {
+  text-align: center;
+  margin: auto;
+  overflow: scroll;
+  width: 100%;
+  -webkit-transition: .3s;
+  transition: .3s;
+  position: relative;
+}
+
+#app .container #ploblem .container #file div a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-indent: -999px;
+}
+
+#app .container #ploblem .container #file div p {
+  color: #808080;
+  font-size: 40px;
+  font-weight: 900;
+}
+
+#app .container #ploblem .container #file div#file-link:hover {
+  background-color: #fff;
+  -webkit-box-shadow: 3px 5px 3px rgba(0, 0, 0, 0.3);
+          box-shadow: 3px 5px 3px rgba(0, 0, 0, 0.3);
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+  z-index: 1;
+  border-bottom: inset 4px #c3cbd8;
+  border-top: inset 0.5px #80808080;
+}
+
+#app .container #ploblem .container #submit-zone {
+  margin: auto;
+  width: 80%;
+}
+
+#app .container #ploblem .container #submit-zone label {
+  margin: 0px;
+  width: 100%;
+}
+
+#app .container #ploblem .container #submit-zone form {
+  margin: 0px;
+  width: 100%;
+}
+
+#app .container #ploblem .container #submit-zone form #problem-flag {
+  border-radius: 15px;
+  width: 100%;
+  height: 60px;
+  -webkit-box-shadow: 3px 5px 3px rgba(0, 0, 0, 0.3);
+          box-shadow: 3px 5px 3px rgba(0, 0, 0, 0.3);
+  font-size: 35px;
+}
+
+#app .container #ploblem .container #submit-zone #submit-button {
+  background-color: #b3c6e6;
+  display: inline-block;
+  -webkit-box-shadow: 3px 5px 3px rgba(0, 0, 0, 0.3);
+          box-shadow: 3px 5px 3px rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  float: right;
+  margin: 20px 0px;
+  border: inset 1px #c3cbd8;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+#app .container #ploblem .container #submit-zone #submit-button b {
+  font-size: 30px;
+  width: 200px;
+  height: 50px;
+  margin: 0px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -8842,15 +9499,67 @@ button.close {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  color: #fff;
+  text-shadow: 0.5px 0.5px 0.5px #808080;
 }
 
-#app .container .container #message form .form-group label {
-  font-size: 40px;
-  margin: 0px 10px 0px 0px;
+#app .container #ploblem .container #submit-zone #submit-button b:hover {
+  text-shadow: 0.5px 0.5px 0.5px #808080;
 }
 
-#app .container .container #message form .form-group input#email,
-#app .container .container #message form .form-group input#user_id {
+#app .container #ploblem .container #submit-zone #submit-button:hover {
+  text-decoration: none;
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+  z-index: 1;
+}
+
+#app .container #login .container #message #login-button,
+#app .container #regist .container #message #login-button {
+  background-color: #b3c6e6;
+  display: inline-block;
+  border-radius: 15px;
+  margin: 50px 0px 100px;
+  border: inset 1px #c3cbd8;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+#app .container #login .container #message #login-button b,
+#app .container #regist .container #message #login-button b {
+  width: 200px;
+  height: 50px;
+  margin: 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #fff;
+  text-shadow: 0.5px 0.5px 0.5px #808080;
+}
+
+#app .container #login .container #message #login-button b:hover,
+#app .container #regist .container #message #login-button b:hover {
+  text-shadow: 0.5px 0.5px 0.5px #808080;
+}
+
+#app .container #login .container #message #login-button:hover,
+#app .container #regist .container #message #login-button:hover {
+  text-decoration: none;
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+  z-index: 1;
+}
+
+#app .container #login .container #message form .form-group input#email,
+#app .container #login .container #message form .form-group input#userName,
+#app .container #regist .container #message form .form-group input#email,
+#app .container #regist .container #message form .form-group input#userName {
   margin: 0px 0px 0px 75px;
   border-radius: 15px;
   text-align: center;
@@ -8860,12 +9569,15 @@ button.close {
   display: inline;
 }
 
-#app .container .container #message form .form-group input#user_id {
+#app .container #login .container #message form .form-group input#userName,
+#app .container #regist .container #message form .form-group input#userName {
   margin: 0px 0px 0px 60px;
 }
 
-#app .container .container #message form .form-group input#password,
-#app .container .container #message form .form-group input#password_check {
+#app .container #login .container #message form .form-group input#password,
+#app .container #login .container #message form .form-group input#password_check,
+#app .container #regist .container #message form .form-group input#password,
+#app .container #regist .container #message form .form-group input#password_check {
   border-radius: 15px;
   text-align: center;
   width: 350px;
@@ -8874,132 +9586,1174 @@ button.close {
   display: inline;
 }
 
-#app .container .container #message form .form-group label#file-button {
-  color: #fff;
-  padding: 0px;
-  margin: 0 92px;
-  background-color: #b3c6e6;
-  display: inline-block;
-  border-radius: 15px;
-  width: 200px;
-  height: 50px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  border: inset 1px #c3cbd8;
-  -webkit-box-shadow: 3px 5px 3px rgba(0, 0, 0, 0.1);
-          box-shadow: 3px 5px 3px rgba(0, 0, 0, 0.1);
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-#app .container .container #message form .form-group label#file-button input#icon_file {
-  display: none;
-}
-
-#app .container .container #message form .form-group label#file-button:hover {
-  text-decoration: none;
-  -webkit-transform: scale(1.05);
-  transform: scale(1.05);
-  z-index: 1;
-}
-
 @media (max-width: 576px) {
-  #app .container .container #body_band {
+  #app .container #top .container #body_band,
+  #app .container #user .container #body_band,
+  #app .container #main .container #body_band,
+  #app .container #ploblem .container #body_band,
+  #app .container #login .container #body_band,
+  #app .container #regist .container #body_band {
     height: 80px;
     margin: 50px 0px 0px 0px;
   }
 
-  #app .container .container #body_band p {
-    font-size: 25px;
+  #app .container #top .container #body_band p,
+  #app .container #user .container #body_band p,
+  #app .container #main .container #body_band p,
+  #app .container #ploblem .container #body_band p,
+  #app .container #login .container #body_band p,
+  #app .container #regist .container #body_band p {
+    font-size: 20px;
   }
 
-  #app .container .container #message h1 {
-    font-size: 25px;
+  #app .container #top .container #message,
+  #app .container #user .container #message,
+  #app .container #main .container #message,
+  #app .container #ploblem .container #message,
+  #app .container #login .container #message,
+  #app .container #regist .container #message {
+    margin: 70px 0px;
   }
 
-  #app .container .container #message a {
+  #app .container #top .container #message h1,
+  #app .container #user .container #message h1,
+  #app .container #main .container #message h1,
+  #app .container #ploblem .container #message h1,
+  #app .container #login .container #message h1,
+  #app .container #regist .container #message h1 {
     font-size: 25px;
+    margin-top: 50px;
   }
 
-  #app .container .container #message p {
+  #app .container #top .container #message p,
+  #app .container #user .container #message p,
+  #app .container #main .container #message p,
+  #app .container #ploblem .container #message p,
+  #app .container #login .container #message p,
+  #app .container #regist .container #message p {
     font-size: 15px;
+  }
+
+  #app .container #top .container #message a,
+  #app .container #user .container #message a,
+  #app .container #main .container #message a,
+  #app .container #ploblem .container #message a,
+  #app .container #login .container #message a,
+  #app .container #regist .container #message a {
+    font-size: 25px;
+  }
+
+  #app .container #top .container #message label,
+  #app .container #user .container #message label,
+  #app .container #main .container #message label,
+  #app .container #ploblem .container #message label,
+  #app .container #login .container #message label,
+  #app .container #regist .container #message label {
+    font-size: 30px;
+  }
+
+  #app .container #top .container #message form,
+  #app .container #user .container #message form,
+  #app .container #main .container #message form,
+  #app .container #ploblem .container #message form,
+  #app .container #login .container #message form,
+  #app .container #regist .container #message form {
+    width: 80%;
+  }
+
+  #app .container #top .container #message form .form-group,
+  #app .container #user .container #message form .form-group,
+  #app .container #main .container #message form .form-group,
+  #app .container #ploblem .container #message form .form-group,
+  #app .container #login .container #message form .form-group,
+  #app .container #regist .container #message form .form-group {
+    text-shadow: 0.5px 0.5px 0.5px #808080;
+  }
+
+  #app .container #top .container #message form .form-group label,
+  #app .container #user .container #message form .form-group label,
+  #app .container #main .container #message form .form-group label,
+  #app .container #ploblem .container #message form .form-group label,
+  #app .container #login .container #message form .form-group label,
+  #app .container #regist .container #message form .form-group label {
+    margin: 0px 10px 0px 0px;
+    font-size: 15px;
+  }
+
+  #app .container #top .container #message form .form-group input#email,
+  #app .container #top .container #message form .form-group input#userName,
+  #app .container #user .container #message form .form-group input#email,
+  #app .container #user .container #message form .form-group input#userName,
+  #app .container #main .container #message form .form-group input#email,
+  #app .container #main .container #message form .form-group input#userName,
+  #app .container #ploblem .container #message form .form-group input#email,
+  #app .container #ploblem .container #message form .form-group input#userName,
+  #app .container #login .container #message form .form-group input#email,
+  #app .container #login .container #message form .form-group input#userName,
+  #app .container #regist .container #message form .form-group input#email,
+  #app .container #regist .container #message form .form-group input#userName {
+    margin: 0px 0px 0px 45px;
+    border-radius: 15px;
+    width: 350px;
+    height: 20px;
+    font-size: 15px;
+  }
+
+  #app .container #top .container #message form .form-group input#userName,
+  #app .container #user .container #message form .form-group input#userName,
+  #app .container #main .container #message form .form-group input#userName,
+  #app .container #ploblem .container #message form .form-group input#userName,
+  #app .container #login .container #message form .form-group input#userName,
+  #app .container #regist .container #message form .form-group input#userName {
+    margin: 0px 0px 0px 60px;
+  }
+
+  #app .container #top .container #message form .form-group input#password,
+  #app .container #top .container #message form .form-group input#password_check,
+  #app .container #user .container #message form .form-group input#password,
+  #app .container #user .container #message form .form-group input#password_check,
+  #app .container #main .container #message form .form-group input#password,
+  #app .container #main .container #message form .form-group input#password_check,
+  #app .container #ploblem .container #message form .form-group input#password,
+  #app .container #ploblem .container #message form .form-group input#password_check,
+  #app .container #login .container #message form .form-group input#password,
+  #app .container #login .container #message form .form-group input#password_check,
+  #app .container #regist .container #message form .form-group input#password,
+  #app .container #regist .container #message form .form-group input#password_check {
+    border-radius: 15px;
+    width: 350px;
+    height: 20px;
+    font-size: 15px;
+  }
+
+  #app .container #user #user-info #user-name {
+    height: 100px;
+    line-height: 100px;
+    font-size: 50px;
+    font-weight: 900;
+    text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  #app .container #user #user-info #info {
+    font-weight: 900;
+    text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  #app .container #user #user-info #info span {
+    font-size: 30px;
+    width: 34%;
+  }
+
+  #app .container #main .container #btn {
+    height: 100%;
+    font-size: 10px;
+    font-weight: 900;
+  }
+
+  #app .container #main .container #problem-zone #problem-tile #problem #problem-info,
+  #app .container #main .container #problem-zone #problem-tile #is-problem-solve #problem-info {
+    -webkit-box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
+    border: inset 1px #d5dce4;
+    border-radius: 15px;
+    margin: 10px;
+    height: 150px;
+    -webkit-transition: .2s;
+    transition: .2s;
+    line-height: 50px;
+  }
+
+  #app .container #ploblem .container #back-list {
+    font-size: 20px;
+  }
+
+  #app .container #ploblem .container #back-list a {
+    text-shadow: 0.5px 0.5px 0.5px #808080;
+  }
+
+  #app .container #ploblem .container #body_band p#problem-info {
+    font-size: 40px;
+  }
+
+  #app .container #ploblem .container #body_band p#problem-info span#info {
+    font-size: 30px;
+  }
+
+  #app .container #ploblem .container #code-zone {
+    font-size: 20px;
+    font-weight: bolder;
+  }
+
+  #app .container #ploblem .container #code-zone div {
+    padding: 20px 0px;
+  }
+
+  #app .container #ploblem .container #hint {
+    font-size: 20px;
+  }
+
+  #app .container #ploblem .container #hint div {
+    padding: 20px 0px;
+  }
+
+  #app .container #ploblem .container #file {
+    min-height: 160px;
+    width: 80%;
+    font-size: 20px;
+  }
+
+  #app .container #ploblem .container #file div p {
+    font-size: 40px;
+    font-weight: 900;
+  }
+
+  #app .container #ploblem .container #file div#file-link:hover {
+    border-bottom: inset 4px #c3cbd8;
+    border-top: inset 0.5px #80808080;
+  }
+
+  #app .container #ploblem .container #submit-zone form {
+    width: 100%;
+  }
+
+  #app .container #ploblem .container #submit-zone form #problem-flag {
+    border-radius: 15px;
+    height: 60px;
+    -webkit-box-shadow: 3px 5px 3px rgba(0, 0, 0, 0.3);
+            box-shadow: 3px 5px 3px rgba(0, 0, 0, 0.3);
+    font-size: 35px;
+  }
+
+  #app .container #ploblem .container #submit-zone #submit-button {
+    -webkit-box-shadow: 3px 5px 3px rgba(0, 0, 0, 0.3);
+            box-shadow: 3px 5px 3px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    margin: 20px 0px;
+    border: inset 1px #c3cbd8;
+  }
+
+  #app .container #ploblem .container #submit-zone #submit-button b {
+    font-size: 30px;
+    width: 200px;
+    height: 50px;
+    margin: 0px;
+    text-shadow: 0.5px 0.5px 0.5px #808080;
+  }
+
+  #app .container #ploblem .container #submit-zone #submit-button b:hover {
+    text-shadow: 0.5px 0.5px 0.5px #808080;
+  }
+
+  #app .container #login .container #message #login-button,
+  #app .container #regist .container #message #login-button {
+    border-radius: 15px;
+    margin: 50px 0px 100px;
+    border: inset 1px #c3cbd8;
+  }
+
+  #app .container #login .container #message #login-button b,
+  #app .container #regist .container #message #login-button b {
+    width: 200px;
+    height: 50px;
+    margin: 0px;
+    text-shadow: 0.5px 0.5px 0.5px #808080;
+  }
+
+  #app .container #login .container #message #login-button b:hover,
+  #app .container #regist .container #message #login-button b:hover {
+    text-shadow: 0.5px 0.5px 0.5px #808080;
   }
 }
 
 @media (min-width: 576px) {
-  #app .container .container #body_band {
+  #app .container #top .container #body_band,
+  #app .container #user .container #body_band,
+  #app .container #main .container #body_band,
+  #app .container #ploblem .container #body_band,
+  #app .container #login .container #body_band,
+  #app .container #regist .container #body_band {
     height: 80px;
     margin: 50px 0px 0px 0px;
   }
 
-  #app .container .container #body_band p {
+  #app .container #top .container #body_band p,
+  #app .container #user .container #body_band p,
+  #app .container #main .container #body_band p,
+  #app .container #ploblem .container #body_band p,
+  #app .container #login .container #body_band p,
+  #app .container #regist .container #body_band p {
     font-size: 25px;
   }
 
-  #app .container .container #message h1 {
-    font-size: 25px;
+  #app .container #top .container #message,
+  #app .container #user .container #message,
+  #app .container #main .container #message,
+  #app .container #ploblem .container #message,
+  #app .container #login .container #message,
+  #app .container #regist .container #message {
+    margin: 70px 0px;
   }
 
-  #app .container .container #message a {
+  #app .container #top .container #message h1,
+  #app .container #user .container #message h1,
+  #app .container #main .container #message h1,
+  #app .container #ploblem .container #message h1,
+  #app .container #login .container #message h1,
+  #app .container #regist .container #message h1 {
     font-size: 25px;
+    margin-top: 50px;
   }
 
-  #app .container .container #message p {
+  #app .container #top .container #message p,
+  #app .container #user .container #message p,
+  #app .container #main .container #message p,
+  #app .container #ploblem .container #message p,
+  #app .container #login .container #message p,
+  #app .container #regist .container #message p {
     font-size: 15px;
+  }
+
+  #app .container #top .container #message a,
+  #app .container #user .container #message a,
+  #app .container #main .container #message a,
+  #app .container #ploblem .container #message a,
+  #app .container #login .container #message a,
+  #app .container #regist .container #message a {
+    font-size: 25px;
+  }
+
+  #app .container #top .container #message label,
+  #app .container #user .container #message label,
+  #app .container #main .container #message label,
+  #app .container #ploblem .container #message label,
+  #app .container #login .container #message label,
+  #app .container #regist .container #message label {
+    font-size: 30px;
+  }
+
+  #app .container #top .container #message form,
+  #app .container #user .container #message form,
+  #app .container #main .container #message form,
+  #app .container #ploblem .container #message form,
+  #app .container #login .container #message form,
+  #app .container #regist .container #message form {
+    width: 80%;
+  }
+
+  #app .container #top .container #message form .form-group,
+  #app .container #user .container #message form .form-group,
+  #app .container #main .container #message form .form-group,
+  #app .container #ploblem .container #message form .form-group,
+  #app .container #login .container #message form .form-group,
+  #app .container #regist .container #message form .form-group {
+    text-shadow: 0.5px 0.5px 0.5px #808080;
+  }
+
+  #app .container #top .container #message form .form-group label,
+  #app .container #user .container #message form .form-group label,
+  #app .container #main .container #message form .form-group label,
+  #app .container #ploblem .container #message form .form-group label,
+  #app .container #login .container #message form .form-group label,
+  #app .container #regist .container #message form .form-group label {
+    margin: 0px 10px 0px 0px;
+    font-size: 25px;
+  }
+
+  #app .container #top .container #message form .form-group input#email,
+  #app .container #top .container #message form .form-group input#userName,
+  #app .container #user .container #message form .form-group input#email,
+  #app .container #user .container #message form .form-group input#userName,
+  #app .container #main .container #message form .form-group input#email,
+  #app .container #main .container #message form .form-group input#userName,
+  #app .container #ploblem .container #message form .form-group input#email,
+  #app .container #ploblem .container #message form .form-group input#userName,
+  #app .container #login .container #message form .form-group input#email,
+  #app .container #login .container #message form .form-group input#userName,
+  #app .container #regist .container #message form .form-group input#email,
+  #app .container #regist .container #message form .form-group input#userName {
+    margin: 0px 0px 0px 75px;
+    border-radius: 15px;
+    width: 350px;
+    height: 35px;
+    font-size: 25px;
+  }
+
+  #app .container #top .container #message form .form-group input#userName,
+  #app .container #user .container #message form .form-group input#userName,
+  #app .container #main .container #message form .form-group input#userName,
+  #app .container #ploblem .container #message form .form-group input#userName,
+  #app .container #login .container #message form .form-group input#userName,
+  #app .container #regist .container #message form .form-group input#userName {
+    margin: 0px 0px 0px 60px;
+  }
+
+  #app .container #top .container #message form .form-group input#password,
+  #app .container #top .container #message form .form-group input#password_check,
+  #app .container #user .container #message form .form-group input#password,
+  #app .container #user .container #message form .form-group input#password_check,
+  #app .container #main .container #message form .form-group input#password,
+  #app .container #main .container #message form .form-group input#password_check,
+  #app .container #ploblem .container #message form .form-group input#password,
+  #app .container #ploblem .container #message form .form-group input#password_check,
+  #app .container #login .container #message form .form-group input#password,
+  #app .container #login .container #message form .form-group input#password_check,
+  #app .container #regist .container #message form .form-group input#password,
+  #app .container #regist .container #message form .form-group input#password_check {
+    border-radius: 15px;
+    width: 350px;
+    height: 35px;
+    font-size: 25px;
+  }
+
+  #app .container #user #user-info #user-name {
+    height: 100px;
+    line-height: 100px;
+    font-size: 25px;
+    font-weight: 900;
+    text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  #app .container #user #user-info #info {
+    font-weight: 900;
+    text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  #app .container #user #user-info #info span {
+    font-size: 30px;
+    width: 34%;
+  }
+
+  #app .container #main .container #btn {
+    height: 100%;
+    font-size: 15px;
+    font-weight: 900;
+  }
+
+  #app .container #main .container #problem-zone #problem-tile #problem #problem-info,
+  #app .container #main .container #problem-zone #problem-tile #is-problem-solve #problem-info {
+    -webkit-box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
+    border: inset 1px #d5dce4;
+    border-radius: 15px;
+    margin: 10px;
+    height: 150px;
+    -webkit-transition: .2s;
+    transition: .2s;
+    line-height: 50px;
+  }
+
+  #app .container #ploblem .container #back-list {
+    font-size: 20px;
+  }
+
+  #app .container #ploblem .container #back-list a {
+    text-shadow: 0.5px 0.5px 0.5px #808080;
+  }
+
+  #app .container #ploblem .container #body_band p#problem-info {
+    font-size: 40px;
+  }
+
+  #app .container #ploblem .container #body_band p#problem-info span#info {
+    font-size: 30px;
+  }
+
+  #app .container #ploblem .container #code-zone {
+    font-size: 20px;
+    font-weight: bolder;
+  }
+
+  #app .container #ploblem .container #code-zone div {
+    padding: 20px 0px;
+  }
+
+  #app .container #ploblem .container #hint {
+    font-size: 20px;
+  }
+
+  #app .container #ploblem .container #hint div {
+    padding: 20px 0px;
+  }
+
+  #app .container #ploblem .container #file {
+    min-height: 160px;
+    width: 80%;
+    font-size: 20px;
+  }
+
+  #app .container #ploblem .container #file div p {
+    font-size: 40px;
+    font-weight: 900;
+  }
+
+  #app .container #ploblem .container #file div#file-link:hover {
+    border-bottom: inset 4px #c3cbd8;
+    border-top: inset 0.5px #80808080;
+  }
+
+  #app .container #ploblem .container #submit-zone form {
+    width: 100%;
+  }
+
+  #app .container #ploblem .container #submit-zone form #problem-flag {
+    border-radius: 15px;
+    height: 60px;
+    -webkit-box-shadow: 3px 5px 3px rgba(0, 0, 0, 0.3);
+            box-shadow: 3px 5px 3px rgba(0, 0, 0, 0.3);
+    font-size: 35px;
+  }
+
+  #app .container #ploblem .container #submit-zone #submit-button {
+    -webkit-box-shadow: 3px 5px 3px rgba(0, 0, 0, 0.3);
+            box-shadow: 3px 5px 3px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    margin: 20px 0px;
+    border: inset 1px #c3cbd8;
+  }
+
+  #app .container #ploblem .container #submit-zone #submit-button b {
+    font-size: 30px;
+    width: 200px;
+    height: 50px;
+    margin: 0px;
+    text-shadow: 0.5px 0.5px 0.5px #808080;
+  }
+
+  #app .container #ploblem .container #submit-zone #submit-button b:hover {
+    text-shadow: 0.5px 0.5px 0.5px #808080;
+  }
+
+  #app .container #login .container #message #login-button,
+  #app .container #regist .container #message #login-button {
+    border-radius: 15px;
+    margin: 50px 0px 100px;
+    border: inset 1px #c3cbd8;
+  }
+
+  #app .container #login .container #message #login-button b,
+  #app .container #regist .container #message #login-button b {
+    width: 200px;
+    height: 50px;
+    margin: 0px;
+    text-shadow: 0.5px 0.5px 0.5px #808080;
+  }
+
+  #app .container #login .container #message #login-button b:hover,
+  #app .container #regist .container #message #login-button b:hover {
+    text-shadow: 0.5px 0.5px 0.5px #808080;
   }
 }
 
 @media (min-width: 768px) {
-  #app .container .container #body_band {
+  #app .container #top .container #body_band,
+  #app .container #user .container #body_band,
+  #app .container #main .container #body_band,
+  #app .container #ploblem .container #body_band,
+  #app .container #login .container #body_band,
+  #app .container #regist .container #body_band {
     margin: 90px 0px 0px 0px;
     height: 125px;
   }
 
-  #app .container .container #body_band p {
-    font-size: 50px;
-  }
-
-  #app .container .container #message h1 {
+  #app .container #top .container #body_band p,
+  #app .container #user .container #body_band p,
+  #app .container #main .container #body_band p,
+  #app .container #ploblem .container #body_band p,
+  #app .container #login .container #body_band p,
+  #app .container #regist .container #body_band p {
     font-size: 40px;
   }
 
-  #app .container .container #message a {
-    font-size: 40px;
+  #app .container #top .container #message,
+  #app .container #user .container #message,
+  #app .container #main .container #message,
+  #app .container #ploblem .container #message,
+  #app .container #login .container #message,
+  #app .container #regist .container #message {
+    margin: 70px 0px;
   }
 
-  #app .container .container #message p {
+  #app .container #top .container #message h1,
+  #app .container #user .container #message h1,
+  #app .container #main .container #message h1,
+  #app .container #ploblem .container #message h1,
+  #app .container #login .container #message h1,
+  #app .container #regist .container #message h1 {
+    font-size: 40px;
+    margin-top: 50px;
+  }
+
+  #app .container #top .container #message p,
+  #app .container #user .container #message p,
+  #app .container #main .container #message p,
+  #app .container #ploblem .container #message p,
+  #app .container #login .container #message p,
+  #app .container #regist .container #message p {
     font-size: 20px;
+  }
+
+  #app .container #top .container #message a,
+  #app .container #user .container #message a,
+  #app .container #main .container #message a,
+  #app .container #ploblem .container #message a,
+  #app .container #login .container #message a,
+  #app .container #regist .container #message a {
+    font-size: 40px;
+  }
+
+  #app .container #top .container #message label,
+  #app .container #user .container #message label,
+  #app .container #main .container #message label,
+  #app .container #ploblem .container #message label,
+  #app .container #login .container #message label,
+  #app .container #regist .container #message label {
+    font-size: 30px;
+  }
+
+  #app .container #top .container #message form,
+  #app .container #user .container #message form,
+  #app .container #main .container #message form,
+  #app .container #ploblem .container #message form,
+  #app .container #login .container #message form,
+  #app .container #regist .container #message form {
+    width: 65%;
+  }
+
+  #app .container #top .container #message form .form-group,
+  #app .container #user .container #message form .form-group,
+  #app .container #main .container #message form .form-group,
+  #app .container #ploblem .container #message form .form-group,
+  #app .container #login .container #message form .form-group,
+  #app .container #regist .container #message form .form-group {
+    text-shadow: 0.5px 0.5px 0.5px #808080;
+  }
+
+  #app .container #top .container #message form .form-group label,
+  #app .container #user .container #message form .form-group label,
+  #app .container #main .container #message form .form-group label,
+  #app .container #ploblem .container #message form .form-group label,
+  #app .container #login .container #message form .form-group label,
+  #app .container #regist .container #message form .form-group label {
+    margin: 0px 10px 0px 0px;
+    font-size: 30px;
+  }
+
+  #app .container #top .container #message form .form-group input#email,
+  #app .container #top .container #message form .form-group input#userName,
+  #app .container #user .container #message form .form-group input#email,
+  #app .container #user .container #message form .form-group input#userName,
+  #app .container #main .container #message form .form-group input#email,
+  #app .container #main .container #message form .form-group input#userName,
+  #app .container #ploblem .container #message form .form-group input#email,
+  #app .container #ploblem .container #message form .form-group input#userName,
+  #app .container #login .container #message form .form-group input#email,
+  #app .container #login .container #message form .form-group input#userName,
+  #app .container #regist .container #message form .form-group input#email,
+  #app .container #regist .container #message form .form-group input#userName {
+    margin: 0px 0px 0px 75px;
+    border-radius: 15px;
+    width: 350px;
+    height: 40px;
+    font-size: 25px;
+  }
+
+  #app .container #top .container #message form .form-group input#userName,
+  #app .container #user .container #message form .form-group input#userName,
+  #app .container #main .container #message form .form-group input#userName,
+  #app .container #ploblem .container #message form .form-group input#userName,
+  #app .container #login .container #message form .form-group input#userName,
+  #app .container #regist .container #message form .form-group input#userName {
+    margin: 0px 0px 0px 60px;
+  }
+
+  #app .container #top .container #message form .form-group input#password,
+  #app .container #top .container #message form .form-group input#password_check,
+  #app .container #user .container #message form .form-group input#password,
+  #app .container #user .container #message form .form-group input#password_check,
+  #app .container #main .container #message form .form-group input#password,
+  #app .container #main .container #message form .form-group input#password_check,
+  #app .container #ploblem .container #message form .form-group input#password,
+  #app .container #ploblem .container #message form .form-group input#password_check,
+  #app .container #login .container #message form .form-group input#password,
+  #app .container #login .container #message form .form-group input#password_check,
+  #app .container #regist .container #message form .form-group input#password,
+  #app .container #regist .container #message form .form-group input#password_check {
+    border-radius: 15px;
+    width: 350px;
+    height: 40px;
+    font-size: 25px;
+  }
+
+  #app .container #user #user-info #icon {
+    width: 50%;
+    float: left;
+  }
+
+  #app .container #user #user-info #user-name {
+    height: 100px;
+    line-height: 100px;
+    font-size: 30px;
+    font-weight: 900;
+    text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  #app .container #user #user-info #info {
+    font-weight: 900;
+    text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  #app .container #user #user-info #info span {
+    font-size: 25px;
+    width: 34%;
+  }
+
+  #app .container #main .container #btn {
+    height: 125px;
+    font-size: 20px;
+    font-weight: 900;
+  }
+
+  #app .container #main .container #problem-zone #problem-tile #problem #problem-info,
+  #app .container #main .container #problem-zone #problem-tile #is-problem-solve #problem-info {
+    -webkit-box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
+    border: inset 1px #d5dce4;
+    border-radius: 15px;
+    margin: 10px;
+    height: 150px;
+    -webkit-transition: .2s;
+    transition: .2s;
+    line-height: 50px;
+  }
+
+  #app .container #ploblem .container #back-list {
+    font-size: 20px;
+  }
+
+  #app .container #ploblem .container #back-list a {
+    text-shadow: 0.5px 0.5px 0.5px #808080;
+  }
+
+  #app .container #ploblem .container #body_band p#problem-info {
+    font-size: 40px;
+  }
+
+  #app .container #ploblem .container #body_band p#problem-info span#info {
+    font-size: 30px;
+  }
+
+  #app .container #ploblem .container #code-zone {
+    font-size: 20px;
+    font-weight: bolder;
+  }
+
+  #app .container #ploblem .container #code-zone div {
+    padding: 20px 0px;
+  }
+
+  #app .container #ploblem .container #hint {
+    font-size: 20px;
+  }
+
+  #app .container #ploblem .container #hint div {
+    padding: 20px 0px;
+  }
+
+  #app .container #ploblem .container #file {
+    min-height: 160px;
+    width: 80%;
+    font-size: 20px;
+  }
+
+  #app .container #ploblem .container #file div p {
+    font-size: 40px;
+    font-weight: 900;
+  }
+
+  #app .container #ploblem .container #file div#file-link:hover {
+    border-bottom: inset 4px #c3cbd8;
+    border-top: inset 0.5px #80808080;
+  }
+
+  #app .container #ploblem .container #submit-zone form {
+    width: 100%;
+  }
+
+  #app .container #ploblem .container #submit-zone form #problem-flag {
+    border-radius: 15px;
+    height: 60px;
+    -webkit-box-shadow: 3px 5px 3px rgba(0, 0, 0, 0.3);
+            box-shadow: 3px 5px 3px rgba(0, 0, 0, 0.3);
+    font-size: 35px;
+  }
+
+  #app .container #ploblem .container #submit-zone #submit-button {
+    -webkit-box-shadow: 3px 5px 3px rgba(0, 0, 0, 0.3);
+            box-shadow: 3px 5px 3px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    margin: 20px 0px;
+    border: inset 1px #c3cbd8;
+  }
+
+  #app .container #ploblem .container #submit-zone #submit-button b {
+    font-size: 30px;
+    width: 200px;
+    height: 50px;
+    margin: 0px;
+    text-shadow: 0.5px 0.5px 0.5px #808080;
+  }
+
+  #app .container #ploblem .container #submit-zone #submit-button b:hover {
+    text-shadow: 0.5px 0.5px 0.5px #808080;
+  }
+
+  #app .container #login .container #message #login-button,
+  #app .container #regist .container #message #login-button {
+    border-radius: 15px;
+    margin: 50px 0px 100px;
+    border: inset 1px #c3cbd8;
+  }
+
+  #app .container #login .container #message #login-button b,
+  #app .container #regist .container #message #login-button b {
+    width: 200px;
+    height: 50px;
+    margin: 0px;
+    text-shadow: 0.5px 0.5px 0.5px #808080;
+  }
+
+  #app .container #login .container #message #login-button b:hover,
+  #app .container #regist .container #message #login-button b:hover {
+    text-shadow: 0.5px 0.5px 0.5px #808080;
   }
 }
 
 @media (min-width: 992px) {
-  #app .container .container #body_band {
+  #app .container #top .container #body_band,
+  #app .container #user .container #body_band,
+  #app .container #main .container #body_band,
+  #app .container #ploblem .container #body_band,
+  #app .container #login .container #body_band,
+  #app .container #regist .container #body_band {
     margin: 90px 0px 0px 0px;
     height: 125px;
   }
 
-  #app .container .container #body_band p {
+  #app .container #top .container #body_band p,
+  #app .container #user .container #body_band p,
+  #app .container #main .container #body_band p,
+  #app .container #ploblem .container #body_band p,
+  #app .container #login .container #body_band p,
+  #app .container #regist .container #body_band p {
     font-size: 50px;
   }
 
-  #app .container .container #message h1 {
-    font-size: 40px;
+  #app .container #top .container #message,
+  #app .container #user .container #message,
+  #app .container #main .container #message,
+  #app .container #ploblem .container #message,
+  #app .container #login .container #message,
+  #app .container #regist .container #message {
+    margin: 70px 0px;
   }
 
-  #app .container .container #message a {
+  #app .container #top .container #message h1,
+  #app .container #user .container #message h1,
+  #app .container #main .container #message h1,
+  #app .container #ploblem .container #message h1,
+  #app .container #login .container #message h1,
+  #app .container #regist .container #message h1 {
     font-size: 40px;
+    margin-top: 50px;
   }
 
-  #app .container .container #message p {
+  #app .container #top .container #message p,
+  #app .container #user .container #message p,
+  #app .container #main .container #message p,
+  #app .container #ploblem .container #message p,
+  #app .container #login .container #message p,
+  #app .container #regist .container #message p {
     font-size: 20px;
   }
+
+  #app .container #top .container #message a,
+  #app .container #user .container #message a,
+  #app .container #main .container #message a,
+  #app .container #ploblem .container #message a,
+  #app .container #login .container #message a,
+  #app .container #regist .container #message a {
+    font-size: 40px;
+  }
+
+  #app .container #top .container #message label,
+  #app .container #user .container #message label,
+  #app .container #main .container #message label,
+  #app .container #ploblem .container #message label,
+  #app .container #login .container #message label,
+  #app .container #regist .container #message label {
+    font-size: 30px;
+  }
+
+  #app .container #top .container #message form,
+  #app .container #user .container #message form,
+  #app .container #main .container #message form,
+  #app .container #ploblem .container #message form,
+  #app .container #login .container #message form,
+  #app .container #regist .container #message form {
+    width: 60%;
+  }
+
+  #app .container #top .container #message form .form-group,
+  #app .container #user .container #message form .form-group,
+  #app .container #main .container #message form .form-group,
+  #app .container #ploblem .container #message form .form-group,
+  #app .container #login .container #message form .form-group,
+  #app .container #regist .container #message form .form-group {
+    text-shadow: 0.5px 0.5px 0.5px #808080;
+  }
+
+  #app .container #top .container #message form .form-group label,
+  #app .container #user .container #message form .form-group label,
+  #app .container #main .container #message form .form-group label,
+  #app .container #ploblem .container #message form .form-group label,
+  #app .container #login .container #message form .form-group label,
+  #app .container #regist .container #message form .form-group label {
+    margin: 0px 10px 0px 0px;
+    font-size: 40px;
+  }
+
+  #app .container #top .container #message form .form-group input#email,
+  #app .container #top .container #message form .form-group input#userName,
+  #app .container #user .container #message form .form-group input#email,
+  #app .container #user .container #message form .form-group input#userName,
+  #app .container #main .container #message form .form-group input#email,
+  #app .container #main .container #message form .form-group input#userName,
+  #app .container #ploblem .container #message form .form-group input#email,
+  #app .container #ploblem .container #message form .form-group input#userName,
+  #app .container #login .container #message form .form-group input#email,
+  #app .container #login .container #message form .form-group input#userName,
+  #app .container #regist .container #message form .form-group input#email,
+  #app .container #regist .container #message form .form-group input#userName {
+    margin: 0px 0px 0px 45px;
+    border-radius: 15px;
+    width: 350px;
+    height: 50px;
+    font-size: 30px;
+  }
+
+  #app .container #top .container #message form .form-group input#userName,
+  #app .container #user .container #message form .form-group input#userName,
+  #app .container #main .container #message form .form-group input#userName,
+  #app .container #ploblem .container #message form .form-group input#userName,
+  #app .container #login .container #message form .form-group input#userName,
+  #app .container #regist .container #message form .form-group input#userName {
+    margin: 0px 0px 0px 60px;
+  }
+
+  #app .container #top .container #message form .form-group input#password,
+  #app .container #top .container #message form .form-group input#password_check,
+  #app .container #user .container #message form .form-group input#password,
+  #app .container #user .container #message form .form-group input#password_check,
+  #app .container #main .container #message form .form-group input#password,
+  #app .container #main .container #message form .form-group input#password_check,
+  #app .container #ploblem .container #message form .form-group input#password,
+  #app .container #ploblem .container #message form .form-group input#password_check,
+  #app .container #login .container #message form .form-group input#password,
+  #app .container #login .container #message form .form-group input#password_check,
+  #app .container #regist .container #message form .form-group input#password,
+  #app .container #regist .container #message form .form-group input#password_check {
+    border-radius: 15px;
+    width: 350px;
+    height: 50px;
+    font-size: 30px;
+  }
+
+  #app .container #user #user-info #user-name {
+    height: 100px;
+    line-height: 100px;
+    font-size: 50px;
+    font-weight: 900;
+    text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  #app .container #user #user-info #info {
+    font-weight: 900;
+    text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  #app .container #user #user-info #info span {
+    font-size: 30px;
+    width: 34%;
+  }
+
+  #app .container #main .container #btn {
+    height: 125px;
+    font-size: 20px;
+    font-weight: 900;
+  }
+
+  #app .container #main .container #problem-zone #problem-tile #problem #problem-info,
+  #app .container #main .container #problem-zone #problem-tile #is-problem-solve #problem-info {
+    -webkit-box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
+    border: inset 1px #d5dce4;
+    border-radius: 15px;
+    margin: 10px;
+    height: 150px;
+    -webkit-transition: .2s;
+    transition: .2s;
+    line-height: 50px;
+  }
+
+  #app .container #main .container #problem-zone #problem-tile #problem #problem-info #problem-title p,
+  #app .container #main .container #problem-zone #problem-tile #is-problem-solve #problem-info #problem-title p {
+    height: 50px;
+    line-height: 25px;
+    margin: auto;
+  }
+
+  #app .container #main .container #problem-zone #problem-tile #problem #problem-info #problem-title p b,
+  #app .container #main .container #problem-zone #problem-tile #is-problem-solve #problem-info #problem-title p b {
+    vertical-align: middle;
+    overflow-y: hidden;
+  }
+
+  #app .container #ploblem .container #back-list {
+    font-size: 20px;
+  }
+
+  #app .container #ploblem .container #back-list a {
+    text-shadow: 0.5px 0.5px 0.5px #808080;
+  }
+
+  #app .container #ploblem .container #body_band p#problem-info {
+    font-size: 40px;
+  }
+
+  #app .container #ploblem .container #body_band p#problem-info span#info {
+    font-size: 30px;
+  }
+
+  #app .container #ploblem .container #code-zone {
+    font-size: 20px;
+    font-weight: bolder;
+  }
+
+  #app .container #ploblem .container #code-zone div {
+    padding: 20px 0px;
+  }
+
+  #app .container #ploblem .container #hint {
+    font-size: 20px;
+  }
+
+  #app .container #ploblem .container #hint div {
+    padding: 20px 0px;
+  }
+
+  #app .container #ploblem .container #file {
+    min-height: 160px;
+    width: 80%;
+    font-size: 20px;
+  }
+
+  #app .container #ploblem .container #file div p {
+    font-size: 40px;
+    font-weight: 900;
+  }
+
+  #app .container #ploblem .container #file div#file-link:hover {
+    border-bottom: inset 4px #c3cbd8;
+    border-top: inset 0.5px #80808080;
+  }
+
+  #app .container #ploblem .container #submit-zone form {
+    width: 100%;
+  }
+
+  #app .container #ploblem .container #submit-zone form #problem-flag {
+    border-radius: 15px;
+    height: 60px;
+    -webkit-box-shadow: 3px 5px 3px rgba(0, 0, 0, 0.3);
+            box-shadow: 3px 5px 3px rgba(0, 0, 0, 0.3);
+    font-size: 35px;
+  }
+
+  #app .container #ploblem .container #submit-zone #submit-button {
+    -webkit-box-shadow: 3px 5px 3px rgba(0, 0, 0, 0.3);
+            box-shadow: 3px 5px 3px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    margin: 20px 0px;
+    border: inset 1px #c3cbd8;
+  }
+
+  #app .container #ploblem .container #submit-zone #submit-button b {
+    font-size: 30px;
+    width: 200px;
+    height: 50px;
+    margin: 0px;
+    text-shadow: 0.5px 0.5px 0.5px #808080;
+  }
+
+  #app .container #ploblem .container #submit-zone #submit-button b:hover {
+    text-shadow: 0.5px 0.5px 0.5px #808080;
+  }
+
+  #app .container #login .container #message #login-button,
+  #app .container #regist .container #message #login-button {
+    border-radius: 15px;
+    margin: 50px 0px 100px;
+    border: inset 1px #c3cbd8;
+  }
+
+  #app .container #login .container #message #login-button b,
+  #app .container #regist .container #message #login-button b {
+    width: 200px;
+    height: 50px;
+    margin: 0px;
+    text-shadow: 0.5px 0.5px 0.5px #808080;
+  }
+
+  #app .container #login .container #message #login-button b:hover,
+  #app .container #regist .container #message #login-button b:hover {
+    text-shadow: 0.5px 0.5px 0.5px #808080;
+  }
+
+  #app .container #login .container #message form .form-group input#email,
+  #app .container #login .container #message form .form-group input#userName,
+  #app .container #regist .container #message form .form-group input#email,
+  #app .container #regist .container #message form .form-group input#userName {
+    margin: 0px 0px 0px 75px;
+    border-radius: 15px;
+  }
+
+  #app .container #login .container #message form .form-group input#userName,
+  #app .container #regist .container #message form .form-group input#userName {
+    margin: 0px 0px 0px 60px;
+  }
+
+  #app .container #login .container #message form .form-group input#password,
+  #app .container #login .container #message form .form-group input#password_check,
+  #app .container #regist .container #message form .form-group input#password,
+  #app .container #regist .container #message form .form-group input#password_check {
+    border-radius: 15px;
+    width: 350px;
+    height: 50px;
+    font-size: 30px;
+  }
+}
+
+circle {
+  fill: #333;
+  -webkit-transition: all 0.4s cubic-bezier(0.96, 0.04, 0.04, 0.96);
+  transition: all 0.4s cubic-bezier(0.96, 0.04, 0.04, 0.96);
+  stroke: #7700ff;
+  stroke-width: 1px;
+}
+
+.active {
+  fill: white;
+  stroke-width: 50px;
 }
 
 #foot {

@@ -11,9 +11,9 @@ export default new VueRouter({
         { path: '/login'            , component:require('./components/Login.vue') },
         { path: '/social/callback'  , component:require('./components/SocialCallback.vue') },
         { path: '/main'             , component:require('./components/Main.vue') },
-        { path: '/main/problem'     , component:require('./components/Problem.vue') },
+        { path: '/main/problem/:id' , component:require('./components/Problem.vue') },
         { path: '/user'             , component:require('./components/User.vue') },
-        { path: '/score'             , component:require('./components/Scoreboard.vue') },
+        { path: '/score'            , component:require('./components/Scoreboard.vue') },
     ],
     scrollBehavior (to , from, savedPosition) {
         if (savedPosition) {

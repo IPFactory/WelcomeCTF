@@ -581,6 +581,18 @@
                                 transition:         .2s;
                                 vertical-align:     middle;
                                 line-height:        50px;
+                                animation: fadeIn 0.2s ease 0s 1 normal;
+                                -webkit-animation: fadeIn 0.2s ease 0s 1 normal;
+                                @keyframes fadeIn {
+                                    0% {opacity: 0}
+                                    100% {opacity: 1}
+                                }
+
+                                @-webkit-keyframes fadeIn {
+                                    0% {opacity: 0}
+                                    100% {opacity: 1}
+                                }
+                                text-decoration: none;
                                 p{
                                     margin:0px;
                                 }
@@ -653,7 +665,32 @@
                             width:              40%;
                             display:            flex;
                             justify-content:    space-between;
+                            animation: fadeIn 0.5s ease 0s 1 normal;
+                            -webkit-animation: fadeIn 0.5s ease 0s 1 normal;
+                            @keyframes fadeIn {
+                                0% {opacity: 0}
+                                100% {opacity: 1}
+                            }
+
+                            @-webkit-keyframes fadeIn {
+                                0% {opacity: 0}
+                                100% {opacity: 1}
+                            }
                         }
+                    }
+                }
+                #data{
+                    min-height: 180px;
+                    animation: fadeIn 0.2s ease 0s 1 normal;
+                    -webkit-animation: fadeIn 0.2s ease 0s 1 normal;
+                    @keyframes fadeIn {
+                        0% {opacity: 0}
+                        100% {opacity: 1}
+                    }
+
+                    @-webkit-keyframes fadeIn {
+                        0% {opacity: 0}
+                        100% {opacity: 1}
                     }
                 }
                 #code-zone{
@@ -1010,7 +1047,7 @@
                     }
                     #body_band{
                         p#problem-info{
-                            font-size:          60px;
+                            font-size:          40px;
                             span#info{
                                 font-size:          30px;
                             }
@@ -1276,7 +1313,7 @@
                     }
                     #body_band{
                         p#problem-info{
-                            font-size:          60px;
+                            font-size:          40px;
                             span#info{
                                 font-size:          30px;
                             }
@@ -1543,7 +1580,7 @@
                     }
                     #body_band{
                         p#problem-info{
-                            font-size:          60px;
+                            font-size:          40px;
                             span#info{
                                 font-size:          30px;
                             }
@@ -1767,7 +1804,16 @@
                                     p{
                                     }
                                     #problem-title{
+                                        p{
+                                            height: 50px;
+                                            line-height:        25px;
+                                            margin:auto;
+                                            b{
+                                                vertical-align: middle;
+                                                overflow-y: hidden;
 
+                                            }
+                                        }
                                     }
                                     #problem-category{
 
@@ -1809,7 +1855,7 @@
                     }
                     #body_band{
                         p#problem-info{
-                            font-size:          60px;
+                            font-size:          40px;
                             span#info{
                                 font-size:          30px;
                             }

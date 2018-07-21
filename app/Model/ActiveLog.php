@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class ActiveLog extends Model
 {
     //act_log
-    protected $table = "ActiveLogs";
+    protected $table = 'ActiveLogs';
 
     /**
      * The attributes that are mass assignable.

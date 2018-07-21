@@ -4,9 +4,10 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Problem extends Model
 {
-    protected $table = "problems";
+    protected $table = 'problems';
 
     /**
      * The attributes that are mass assignable.
@@ -17,7 +18,7 @@ class Problem extends Model
         'id','title','category','statement','point','hint','author_id','link'
     ];
     protected $hidden = [
-        
+
     ];
     protected $guarded = [
         'id'

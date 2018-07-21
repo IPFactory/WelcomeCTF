@@ -45,18 +45,6 @@ const head = new Vue({
     data : {
         show     : false,
     },
-    beforeCreate () {
-    },
-    created () {
-    },
-    beforeMount () {
-    },
-    mounted () {
-    },
-    beforeUpdate(){
-    },
-    updated (){
-    },
     methods : {
         changeShow : function () {
             this.show = window.authshow
@@ -73,22 +61,6 @@ const head = new Vue({
 const app = new Vue({
     router,
     el: '#app',
-    beforeCreate () {
-    },
-    created () {
-    },
-    beforeMount () {
-    },
-    mounted () {
-    },
-    beforeUpdate(){
-    },
-    updated (){
-    },
-    beforeDestroy () {
-    },
-    destroy () {
-    },
     data : {
         show    : false,
     },

@@ -3,13 +3,13 @@
     <div class="container">
         <div id="body_band">
             <p id="problem-info">
-                <span>Q.1 tes</span>
+                <span>Q.{{ problemList.id }} {{ problemList.title }}</span>
                 <span id="info">
-                    <span>100pt</span>
-                    <span>Misc</span>
-                    <span>0</span>
+                    <span>{{ problemList.point }}</span>
+                    <span>{{ problemList.category }}</span>
+                    <span>{{ problemList.solveCount }}</span>
                     <span>
-                        <b v-if="isSolve">★</b>
+                        <b v-if=problemList.isSolve>★</b>
                         <b v-else>☆</b>
                     </span>
                 </span>
@@ -19,40 +19,26 @@
             <router-link to="/main"><b>&lt; &lt; problem::list</b></router-link >
         </div>
         <div id="message">
-            <p>テストtestてすとテストtestてすとテストtestてすとテストtestてすとテストtest
-                <br>てすとテストtestてすとテストtestてすとテストtestてすとテストtestてすとテストtestてすと
-                <br>テストtestてすとテストtestてすとテストtestてすとテストtestてすとテストtestてすとテスト
-                <br>testてすとテストtestてすと
-            </p>
-            <label>CODE:</label>
-            <div id="code-zone">
-                <div>
-                    welcomeCTF{Test_tes_te
-                        s_tes_tes_tes_tes_tes_tes
-                        _tes_test_tesTest_tes_tes_tes_tes
-                        _tes_tes_tes_tes_tes_test_tesTest_tes_te
-                        s_tes_tes_tes_tes_tes_tes_tes_test_tesTest_te
 
-                        s_tes_tes_tes_tes_tes_tes_tes_tes_test_te
-                        sTest_tes_tes_tes_tes_tes_tes_tes_tes_tes_test_tesTest_tes_tes_tes_tes_tes_tes_tes_tes_tes_test_tesTest_tes_tes_tes_tes_tes_tes_tes_tes_tes_test_tesTest_tes_tes_tes_tes_tes_tes_tes_tes_tes_test_tesTest_tes_tes_tes_tes_tes_tes_tes_tes_tes_test_tes}
-                </div>
-            </div>
+            <div id="data" v-html=problemList.statement></div>
             <label @click="openHint()">Hint!<b v-if="!this.isHintOpen">▼</b><b v-else>:</b></label>
             <div id="hint" v-if="this.isHintOpen">
                 <div id="hint-text">
-                    テストテストテストテストテストテストテストテストテストテストテストテストテストテストテスト
+                    {{problemList.hint}}
                 </div>
             </div>
+            <div v-if=problemList.file1>
             <label>File:</label>
             <div id="file">
-                <div id="file-link">
+                <div id="file-link" >
                     <p>File</p>
-                    <a href="./" target="_blank"></a>
+                    <a :href='"../ctffiles/"+problemList.file1' target="_blank"></a>
                 </div>
-                <div id="file-link">
+                <div id="file-link" v-if=problemList.file2 >
                     <p>File</p>
-                    <a href="./" target="_blank"></a>
+                    <a :href='"../ctffiles/"+problemList.file2' target="_blank"></a>
                 </div>
+            </div>
             </div>
             <div id="submit-zone">
                 <label>Flag:</label>
@@ -69,14 +55,17 @@
 </div>
 </template>
 <script>
+import http from "../service/http"
+
 export default {
     props:["show"],
     created() {
         console.log('created problem.')
         this.initializationProblem();
+        this.getProblemData();
     },
     mounted () {
-        this.isAuth()
+        this.isAuth();
     },
     updated() {
         this.isAuth ()
@@ -85,9 +74,15 @@ export default {
         return {
             isHintOpen  : false,
             isSolve     : false,
+            problemList : [],
         }
     },
     methods : {
+        getProblemData () {
+            http.get('/problem/'+this.$route.params.id,res => {
+                this.problemList = res.data[0]
+            });
+        },
         openHint () {
             if (!this.isHintOpen) {
                 this.isHintOpen = true;
