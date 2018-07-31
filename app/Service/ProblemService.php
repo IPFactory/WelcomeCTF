@@ -15,7 +15,7 @@ class ProblemService
     private $request;
     private $user;
 
-public function __construct ($user/*,Request $request*/){
+    public function __construct ($user/*,Request $request*/){
         //$this->request  =   $request;
         $this->user     =   $user;
     }
@@ -24,18 +24,18 @@ public function __construct ($user/*,Request $request*/){
     *
     *   Info : getInfo SQL
     // TODO: これを実行したい
-SELECT
-problems.id id,title,point,category.category category,statement,hint,author.name name,author.link twitter,problem_files.first_data file1,problem_files.second_data file2,
-(SELECT count(*) FROM activeLogs WHERE problem_id = 1) AS count,
-(SELECT count(*) FROM activeLogs WHERE user_id = 1 AND problem_id = 1 LIMIT 1) AS isSolve
-FROM problems
-INNER JOIN category         ON problems.category    = category.id
-INNER JOIN author           ON problems.author_id   = author.id
-LEFT OUTER JOIN problem_files    ON problems.id          = problem_files.id
-WHERE problems.id = 1;
+    SELECT
+    problems.id id,title,point,category.category category,statement,hint,author.name name,author.link twitter,problem_files.first_data file1,problem_files.second_data file2,
+    (SELECT count(*) FROM activeLogs WHERE problem_id = 1) AS count,
+    (SELECT count(*) FROM activeLogs WHERE user_id = 1 AND problem_id = 1 LIMIT 1) AS isSolve
+    FROM problems
+    INNER JOIN category             ON problems.category    = category.id
+    INNER JOIN author               ON problems.author_id   = author.id
+    LEFT OUTER JOIN problem_files   ON problems.id          = problem_files.id
+    WHERE problems.id = 1;
     *
     */
-public function getInfo ($id) {
+    public function getInfo ($id) {
         $response  =   Problem::leftJoin('problem_files','problems.id','=','problem_files.id')
                            ->join('category',   'problems.category',    '=', 'category.id')
                            ->join('author',     'problems.author_id',   '=', 'author.id')
@@ -76,7 +76,7 @@ public function getInfo ($id) {
             'problems.id, problems .title, problems.point, category.category,
             ( CASE WHEN userSolve.problem_id IS NOT NULL THEN 1 ELSE 0 END ) AS isSolve')
         ->join('category','category.id','=','problems.category')->orderBy('problems.id','ASC')
-        ->leftJoin(\DB::raw('({$sub_query->toSql()}) AS userSolve'),'userSolve.problem_id', '=', 'problems.id');
+        ->leftJoin(\DB::raw("({$sub_query->toSql()}) AS userSolve"),'userSolve.problem_id', '=', 'problems.id');
 
         return $respons->mergeBindings($sub_query->getQuery())->get();
     }
