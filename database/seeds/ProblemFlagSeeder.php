@@ -33,7 +33,7 @@ class ProblemFlagSeeder extends Seeder
             (17,'welcomeCTF{Someday_you_will_see}',0,NULL,NULL),
             (18,'welcomeCTF{PNG_Magic}',0,NULL,NULL),
             (19,'welcomeCTF{packet_oisii}',0,NULL,NULL),
-            (20,'',0,NULL,NULL),
+            (20,'welcomeCTF{YouC4nF1ndH1mH1dd3n}',0,NULL,NULL),
             (21,'welcomeCTF{console.log(!0,1e4,2<<20)}',0,NULL,NULL),
             (22,'welcomeCTF{THE_NORTH_WIND_AND_THE_SUN}',0,NULL,NULL),
             (23,'welcomeCTF{pasopi}',0,NULL,NULL),
