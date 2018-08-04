@@ -62,5 +62,29 @@ class UserService
         ->leftJoin(\DB::raw("({$sub_query->toSql()}) AS solveds"),'solveds.problem_id', '=', 'problems.id')
         ->orderBy('problems.id','ASC')->mergeBindings($sub_query->getQuery())->get();
     }
+    /*
+    SELECT      users.name AS name, SUM(problems.point) AS point
+    FROM        ActiveLogs
+    INNER JOIN  problems ON problems.id = ActiveLogs.problem_id
+    INNER JOIN  Users    ON users.id    = ActiveLogs.user_id
+    GROUP BY    activelogs.user_id
+    ORDER BY    point DESC;
+
+    SELECT      users.name, SUM(problems.point)
+    FROM        ActiveLogs
+    INNER JOIN  problems ON problems.id = ActiveLogs.problem_id
+    INNER JOIN  Users    ON users.id    = ActiveLogs.user_id
+    WHERE       users.id = 1
+    GROUP BY    activelogs.user_id HAVING activelogs.user_id = 1;
+
+    */
+    public function getRanking () {
+        return ActiveLog::selectRaw('users.name AS name, SUM(problems.point) AS point')
+            ->join('problems','problems.id','=','ActiveLogs.problem_id')
+            ->join('Users','users.id','=','ActiveLogs.user_id')
+            ->groupBy('activelogs.user_id')
+            ->orderBy('point','DESC')
+            ->get();
+    }
 
 }
