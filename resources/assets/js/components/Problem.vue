@@ -64,9 +64,6 @@ export default {
         this.initializationProblem();
         this.getProblemData();
     },
-    mounted () {
-        this.isAuth();
-    },
     updated() {
         this.isAuth ()
     },
