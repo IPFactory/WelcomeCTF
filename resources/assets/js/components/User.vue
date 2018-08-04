@@ -51,7 +51,6 @@ export default {
     props:["show"],
     mounted () {
         this.getUserData()
-        this.getProblemList()
     },
     updated () {
         this.isAuth()
@@ -73,14 +72,14 @@ export default {
             },error => {
                 console.log("err")
             })
-        },
-        getProblemList () {
+
             http.get("user/list",res => {
                 this.lists = JSON.stringify(res.data);
                 this.lists = JSON.parse(this.lists)
             },error => {
                 console.log("err")
             })
+
         },
         isAuth () {
             if (!this.show) {
