@@ -29,6 +29,9 @@ class UserController extends Controller
     public function getList () {
         return $this->UserService->getList();
     }
+    public function getRanking () {
+        return $this->UserService->getRanking();
+    }
 
 
 }
