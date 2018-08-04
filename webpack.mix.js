@@ -27,7 +27,10 @@ mix.webpackConfig({
             algorithm: "gzip",
             test: /\.js$|\.css$|\.html$|\.svg$/,
             threshold: 10240,
-            minRatio: 0.8
+            minRatio: 0.9,
+            numiterations : 50,
+            blocksplittinglast : true,
+            blocksplittingmax : 30
         })
     ]
 });
