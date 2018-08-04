@@ -18,6 +18,7 @@ Route::group(['middleware' => 'api'],function(){
     Route::get('user/info',         'User\\UserController@getUser');
     Route::get('user/raite',        'User\\UserController@getRatio');
     Route::get('user/list',         'User\\UserController@getList');
+    Route::get('ranking',           'User\\UserController@getRanking');
     Route::get('problem/all',       'Problem\\ProblemController@getProblemList');
     Route::get('problem/{id}',      'Problem\\ProblemController@getProblemInfo');
     Route::post('regist/digest',    'Auth\\AuhtAuthenticateController@registInDigest');
