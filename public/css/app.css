@@ -9192,6 +9192,10 @@ button.close {
   text-decoration: none;
 }
 
+#app .container #main .container #problem-zone {
+  min-height: 550px;
+}
+
 #app .container #main .container #problem-zone #problem-tile #problem,
 #app .container #main .container #problem-zone #problem-tile #is-problem-solve {
   display: -webkit-box;
@@ -9200,6 +9204,8 @@ button.close {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  animation: fadeIn 0.2s ease 0s 1 normal;
+  -webkit-animation: fadeIn 0.2s ease 0s 1 normal;
 }
 
 #app .container #main .container #problem-zone #problem-tile #problem #problem-info,
@@ -9243,6 +9249,26 @@ button.close {
 #app .container #main .container #problem-zone #problem-tile #problem #problem-info p,
 #app .container #main .container #problem-zone #problem-tile #is-problem-solve #problem-info p {
   margin: 0px;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
 #app .container #main .container #problem-zone #problem-tile #problem #problem-info {

@@ -14,31 +14,20 @@ class hoge extends Controller
     private $user;
     /*
     *
-    SELECT count(problems.id)
-    FROM ActiveLogs
-    INNER JOIN problems ON problems.id = ActiveLogs.problem_id
-    INNER JOIN category ON category.id = problems.category
-    WHERE user_id = 1 AND category.category = 'Web';
-
-    select *
-    from `ActiveLogs`
-    inner join `problems` on `problems`.`id` = `ActiveLogs`.`problem_id`
-    inner join `category` on `category`.`id` = `problems`.`category`
-    where
-    `user_id` = 1 and `category`.`category` = ? and `category`.`category` = ?
+    SELECT problems.id AS id, problems.title AS title, solveds.is_solve AS isSolve, problems.point
+    FROM problems
+    LEFT JOIN (SELECT is_solve, problem_id FROM activeLogs WHERE user_id = 1) AS solveds ON solveds.problem_id = problems.id
+    ORDER BY problems.id ASC;
     *
     */
     public function hoge (Request $Request) {
-        $id=$Request->id;
-        $response = [];
-        $ActiveLog = ActiveLog::join('problems','problems.id','=','ActiveLogs.problem_id')->join('category','category.id','=','problems.category')->where('user_id','=',$id);
-        $categorys =Category::get(['category']);
-        print($ActiveLog->count('problems.id')."\n");
-        foreach ($categorys as $key => $value;) {
-            $dumy=$ActiveLog;
-            print($value->category.':'.$dumy->where('category.category','=',$value->category)->toSql()."\n");
-        }
-        return ;
+        $id         =   $Request->id;
+        $sub_query  =   ActiveLog::selectRaw('is_solve, problem_id')->where('user_id','=',$id);
+        $respons    =   Problem::selectRaw('problems.id AS id, problems.title AS title, solveds.is_solve AS isSolve, problems.point')
+        ->leftJoin(\DB::raw("({$sub_query->toSql()}) AS solveds"),'solveds.problem_id', '=', 'problems.id')
+        ->orderBy('problems.id','ASC');
+        return $respons->mergeBindings($sub_query->getQuery())->get();
+
 
     }
 }

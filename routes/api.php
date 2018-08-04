@@ -15,7 +15,10 @@ use Illuminate\Http\Request;
 
 Route::group(['middleware' => 'api'],function(){
     Route::get('hoge',              'hoge@hoge');
-    Route::get('problem/all',           'Problem\\ProblemController@getProblemList');
+    Route::get('user/info',         'User\\UserController@getUser');
+    Route::get('user/raite',        'User\\UserController@getRatio');
+    Route::get('user/list',         'User\\UserController@getList');
+    Route::get('problem/all',       'Problem\\ProblemController@getProblemList');
     Route::get('problem/{id}',      'Problem\\ProblemController@getProblemInfo');
     Route::post('regist/digest',    'Auth\\AuhtAuthenticateController@registInDigest');
     Route::post('login/twitter',    'Auth\\Authenti?cateController@authenticateInTwitter');
