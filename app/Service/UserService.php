@@ -7,9 +7,10 @@ use Illuminate\Http\Request;
 use App\Model\User      as User;
 use App\Model\Problem   as Problem;
 use App\Model\ActiveLog as ActiveLog;
+use App\Model\Category  as Category;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
-class ProblemService
+class UserService
 {
 
     private $request;
@@ -49,14 +50,15 @@ class ProblemService
         $categorys =Category::get(['category']);
         foreach ($categorys as $key => $value) {
             $ActiveLog = ActiveLog::join('problems','problems.id','=','ActiveLogs.problem_id')->join('category','category.id','=','problems.category')->where('user_id','=',$this->user->id);
-            array_push($response,[$value->category => $ActiveLog->where('category.category','=',$value->category)->count()]);
+            $response[$value->category] = $ActiveLog->where('category.category','=',$value->category)->count();
         }
         return $response;
     }
 
     public function getList () {
         $sub_query  =   ActiveLog::selectRaw('is_solve, problem_id')->where('user_id','=',$this->user->id);
-        $respons    =   Problem::selectRaw('problems.id AS id, problems.title AS title, solveds.is_solve AS isSolve, problems.point')
+        $respons    =   Problem::selectRaw('problems.id AS id, problems.title AS title, solveds.is_solve AS isSolve, problems.point, category.category AS genre')
+        ->join('category','category.id','=','problems.category')
         ->leftJoin(\DB::raw("({$sub_query->toSql()}) AS solveds"),'solveds.problem_id', '=', 'problems.id')
         ->orderBy('problems.id','ASC');
         return $respons->mergeBindings($sub_query->getQuery())->get();
