@@ -22,12 +22,14 @@
 </template>
 
 <script>
-import Vue  from "vue";
+import Vue  from "vue"
+import http from "../service/http"
+
 Vue.component('score', require('./chart/score.vue'));
 export default {
     props:["show"],
     mounted () {
-        this.isAuth()
+        this.getRanking()
     },
     updated () {
         this.isAuth()
@@ -42,19 +44,15 @@ export default {
             mySolved: 6,
             datas   : [0, 100, 200, 210, 340, 1000, 1200],
             labels  : ["10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00"],
-            lists: [
-                {name: 'りんご',point: 100},
-                {name: 'ごりら',point: 99},
-                {name: 'らっぱ',point: 98},
-                {name: 'ぱんつ',point: 97},
-                {name: 'つみき',point: 96},
-                {name: 'きのこ',point: 95},
-                {name: 'こーら',point: 94},
-
-            ]
+            lists: []
         }
     },
     methods :{
+        getRanking () {
+            http.get('/ranking',res => {
+                this.lists = res.data
+            })
+        },
         isAuth () {
             if (!this.show) {
                 this.$router.push('/')
