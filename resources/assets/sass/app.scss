@@ -429,6 +429,16 @@
             #user-info{
                 width: 100%;
                 height: 330px;
+                animation: fadeIn 3s ease 0s 1 normal;
+                -webkit-animation: fadeIn 3s ease 0s 1 normal;
+                @keyframes fadeIn {
+                    0% {opacity: 0}
+                    100% {opacity: 1}
+                }
+                @-webkit-keyframes fadeIn {
+                    0% {opacity: 0}
+                    100% {opacity: 1}
+                }
                 #icon{
                     margin:                 0px;
                     width:                  50%;
@@ -476,6 +486,16 @@
             }
             #ploblemTable,#score-table{
                 margin-top: 20px;
+                animation: fadeIn 3s ease 0s 1 normal;
+                -webkit-animation: fadeIn 3s ease 0s 1 normal;
+                @keyframes fadeIn {
+                    0% {opacity: 0}
+                    100% {opacity: 1}
+                }
+                @-webkit-keyframes fadeIn {
+                    0% {opacity: 0}
+                    100% {opacity: 1}
+                }
                 table{
                     width: 100%;
                     margin: auto;
