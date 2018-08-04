@@ -37,7 +37,7 @@ class UserService
     *
     */
     public function getInfo () {
-        return $request = Problem::selectRaw(
+        return Problem::selectRaw(
             'distinct users.name as user, count(*) as solved, sum(problems.point) as point, CEILING(sum(problems.point)/500) AS rank'
             )
         ->join('activeLogs','activeLogs.problem_id', '=', 'problems.id')
@@ -57,11 +57,10 @@ class UserService
 
     public function getList () {
         $sub_query  =   ActiveLog::selectRaw('is_solve, problem_id')->where('user_id','=',$this->user->id);
-        $respons    =   Problem::selectRaw('problems.id AS id, problems.title AS title, solveds.is_solve AS isSolve, problems.point, category.category AS genre')
+        return Problem::selectRaw('problems.id AS id, problems.title AS title, solveds.is_solve AS isSolve, problems.point, category.category AS genre')
         ->join('category','category.id','=','problems.category')
         ->leftJoin(\DB::raw("({$sub_query->toSql()}) AS solveds"),'solveds.problem_id', '=', 'problems.id')
-        ->orderBy('problems.id','ASC');
-        return $respons->mergeBindings($sub_query->getQuery())->get();
+        ->orderBy('problems.id','ASC')->mergeBindings($sub_query->getQuery())->get();
     }
 
 }
