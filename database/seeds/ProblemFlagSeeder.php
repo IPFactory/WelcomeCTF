@@ -13,7 +13,7 @@ class ProblemFlagSeeder extends Seeder
     public function run()
     {
         DB::insert("
-            INSERT INTO `problem_flags` VALUES
+            INSERT INTO `problem_flags` (`id`,`correct_flag`,`solve_count`,`created_at`,`updated_at`) VALUES
             (1,'welcomeCTF{Let\'s_enjoy_CTF}',0,NULL,NULL),
             (2,'welcomeCTF{easy_forensics_COM}',0,NULL,NULL),
             (3,'welcomeCTF{Efini_RX-7}',0,NULL,NULL),

@@ -13,7 +13,7 @@ class ProblemSeeder extends Seeder
     public function run()
     {
         DB::insert("
-            INSERT INTO `problems` VALUES
+            INSERT INTO `problems`(`id`,`title`,`category`,`statement`,`point`,`hint`,`author_id`,`link`,`created_at`,`updated_at`,`reserved_at`,`hint_open_at`) VALUES
             (1,'Opening',1,'<p>CTFは問題からflagの文字列を探し出し、flagをsubmitすれば得点が入ります。<br>\nwelcomeCTFのflag形式はwelcomeCTF{}です。<br>\nこの問題は練習問題です。<br>\n下の入力欄にflagを入力してSubmitボタンを押して、答えを送信しましょう！</p>\n<div id=code-zone><div>welcomeCTF{Let\'s_enjoy_CTF}</div></div>',50,'flagをコピー&ペーストすると打ち間違いがなくなります。',1,'https://qiita.com/smicle/private/d60012341e806d9916ff','2018-07-15 17:30:17',NULL,NULL,NULL),
             (2,'Strings_Message ',2,'<p>この写真の中にflagを残しておいたよ！</p>',50,'バイナリ！',4,'https://qiita.com/iria_piyo/private/3a1c7c0b970bf9d5979b','2018-07-15 17:30:17',NULL,NULL,NULL),
             (3,'Let\'s_decode',1,'<p>何と書かれているのでしょうか?</p><div id=code-zone><div>d2VsY29tZUNURntFZmluaV9SWC03fQ==</div></div>',50,'',6,'https://qiita.com/cha1aza/private/08470a9dcb2a87c93393','2018-07-15 17:30:17',NULL,NULL,NULL),
