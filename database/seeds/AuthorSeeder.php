@@ -13,7 +13,7 @@ class AuthorSeeder extends Seeder
     public function run()
     {
         DB::insert("
-            INSERT INTO `author`(`id`,`name`,`link`) VALUES
+            INSERT INTO `Author`(`id`,`name`,`link`) VALUES
             (1,'smicle','https://twitter.com/smicle_cl'),
             (2,'somebody_gp','https://twitter.com/somebody_gp'),
             (3,'miyagaw61','https://twitter.com/miyagaw61'),

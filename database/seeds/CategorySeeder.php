@@ -13,7 +13,7 @@ class CategorySeeder extends Seeder
     public function run()
     {
         DB::insert("
-            INSERT INTO `category` (`id`,`category`) VALUES
+            INSERT INTO `Category` (`id`,`category`) VALUES
             (1,'Misc'),
             (2,'Forensics'),
             (3,'Crypt'),

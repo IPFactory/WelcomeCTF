@@ -13,7 +13,7 @@ class ProblemFileSeeder extends Seeder
     public function run()
     {
         DB::insert("
-            INSERT INTO `problem_files`(`id`,`first_data`,`second_data`,`created_at`,`updated_at`) VALUES
+            INSERT INTO `Problem_files`(`id`,`first_data`,`second_data`,`created_at`,`updated_at`) VALUES
             (2,'Strings_Message.jpg',NULL,NULL,NULL),
             (4,'WhoIsThis.png',NULL,NULL,NULL),
             (5,'findfind.txt',NULL,NULL,NULL),
