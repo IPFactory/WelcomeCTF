@@ -16,19 +16,19 @@ class UserService {
 
     public function getInfo () {
         return  Problem::selectRaw(
-                    'distinct users.name as user, count(*) as solved, sum(problems.point) as point, CEILING(sum(problems.point)/500) AS rank'
+                    'distinct Users.name as user, count(*) as solved, sum(Problems.point) as point, CEILING(sum(Problems.point)/500) AS rank'
                 )
-                ->join('activeLogs','activeLogs.problem_id', '=', 'problems.id')
-                ->join('users','activeLogs.user_id','=','users.id')
-                ->where('users.id',$this->user->id)->groupBy('users.id')->get();
+                ->join('ActiveLogs','ActiveLogs.problem_id', '=', 'Problems.id')
+                ->join('Users','ActiveLogs.user_id','=','Users.id')
+                ->where('Users.id',$this->user->id)->groupBy('Users.id')->get();
     }
 
     public function getPei () {
         $response   = [];
         $categorys  = Category::get(['category']);
         foreach ($categorys as $key => $value) {
-            $ActiveLog = ActiveLog::join('problems','problems.id','=','ActiveLogs.problem_id')->join('category','category.id','=','problems.category')->where('user_id','=',$this->user->id);
-            $response[$value->category] = $ActiveLog->where('category.category','=',$value->category)->count();
+            $ActiveLog = ActiveLog::join('Problems','Problems.id','=','ActiveLogs.problem_id')->join('Category','Category.id','=','Problems.category')->where('user_id','=',$this->user->id);
+            $response[$value->category] = $ActiveLog->where('Category.category','=',$value->category)->count();
         }
         return $response;
     }
@@ -36,19 +36,19 @@ class UserService {
     public function getList () {
         $sub_query  =   ActiveLog::selectRaw('is_solve, problem_id')->where('user_id','=',$this->user->id);
         return  Problem::selectRaw(
-                    'problems.id AS id, problems.title AS title, solveds.is_solve AS isSolve, problems.point, category.category AS genre'
+                    'Problems.id AS id, Problems.title AS title, solveds.is_solve AS isSolve, Problems.point, Category.category AS genre'
                 )
-                ->join('category','category.id','=','problems.category')
-                ->leftJoin(\DB::raw("({$sub_query->toSql()}) AS solveds"),'solveds.problem_id', '=', 'problems.id')
-                ->orderBy('problems.id','ASC')->mergeBindings($sub_query->getQuery())
+                ->join('Category','Category.id','=','Problems.category')
+                ->leftJoin(\DB::raw("({$sub_query->toSql()}) AS solveds"),'solveds.problem_id', '=', 'Problems.id')
+                ->orderBy('Problems.id','ASC')->mergeBindings($sub_query->getQuery())
                 ->get();
     }
 
     public function getRanking () {
-        return  ActiveLog::selectRaw('users.name AS name, SUM(problems.point) AS point')
-                ->join('problems', 'problems.id','=','ActiveLogs.problem_id')
-                ->join('Users','users.id','=','ActiveLogs.user_id')
-                ->groupBy('activelogs.user_id')
+        return  ActiveLog::selectRaw('Users.name AS name, SUM(Problems.point) AS point')
+                ->join('Problems', 'Problems.id','=','ActiveLogs.problem_id')
+                ->join('Users','Users.id','=','ActiveLogs.user_id')
+                ->groupBy('ActiveLogs.user_id')
                 ->orderBy('point','DESC')
                 ->get();
     }
