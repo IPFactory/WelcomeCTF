@@ -31,7 +31,7 @@ class ProblemService
     public function getList () {
         $sub_query =ActiveLog::select('problem_id', 'user_id')->where('user_id', $this->user)->orderBy('problem_id', 'ASC');
         $response  =Problem::selectRaw(
-                        'Problems.id, problems .title, Problems.point, Category.category,
+                        'Problems.id, Problems.title, Problems.point, Category.category,
                         ( CASE WHEN userSolve.problem_id IS NOT NULL THEN 1 ELSE 0 END ) AS isSolve'
                     )
                     ->join('Category', 'Category.id', '=', 'Problems.category')->orderBy('Problems.id', 'ASC')
