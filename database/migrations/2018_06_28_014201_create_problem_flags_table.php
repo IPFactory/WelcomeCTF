@@ -13,7 +13,7 @@ class CreateProblemFlagsTable extends Migration
      */
     public function up()
     {
-        Schema::create('problem_flags', function (Blueprint $table) {
+        Schema::create('Problem_flags', function (Blueprint $table) {
             $table->integer('id');
             $table->longText('correct_flag');
             $table->integer('solve_count')->default($value = 0);

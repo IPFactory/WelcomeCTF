@@ -8,7 +8,7 @@ class CreateAuthorTable extends Migration
 {
     public function up()
     {
-        Schema::create('author', function (Blueprint $table) {
+        Schema::create('Author', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('link');

@@ -8,7 +8,7 @@ class CreateProblemsTable extends Migration
 {
     public function up()
     {
-        Schema::create('problems', function (Blueprint $table) {
+        Schema::create('Problems', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
             $table->integer('category');

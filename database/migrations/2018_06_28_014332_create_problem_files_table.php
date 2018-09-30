@@ -13,7 +13,7 @@ class CreateProblemFilesTable extends Migration
      */
     public function up()
     {
-        Schema::create('problem_files', function (Blueprint $table) {
+        Schema::create('Problem_files', function (Blueprint $table) {
             $table->integer('id');
             $table->mediumText('first_data')->nullable();
             $table->mediumText('second_data')->nullable();
