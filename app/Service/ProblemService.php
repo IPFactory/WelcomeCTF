@@ -15,7 +15,7 @@ class ProblemService
     }
 
     public function getInfo ($id) {
-        $response = Problem::leftJoin('Problem_files', 'Problems.id', '=', 'problem_files.id')
+        $response = Problem::leftJoin('Problem_files', 'Problems.id', '=', 'Problem_files.id')
                     ->join('Category', 'Problems.category', '=', 'Category.id')
                     ->join('Author', 'Problems.author_id', '=', 'Author.id')
                     ->where([ ['Problems.id', '=', $id ] ])
