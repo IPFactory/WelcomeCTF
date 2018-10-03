@@ -10,7 +10,7 @@ class ActiveLog extends Model
 {
     //act_log
     protected $table        = 'ActiveLogs';
-    protected $connection   = 'score';
+    protected $connection   = 'mysql';
 
     /**
      * The attributes that are mass assignable.
