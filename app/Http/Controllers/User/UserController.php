@@ -16,8 +16,13 @@ class UserController extends Controller
 
     public function __construct()
     {
-        $this->user = JWTAuth::parseToken()->authenticate();
-        $this->UserService = new UserService($this->user);
+        try {
+            $this->user = JWTAuth::parseToken()->authenticate();
+            $this->UserService = new UserService($this->user);
+        } catch (JWTException $e){
+            return response()->json(['error' => 'Authentication failed'], 401);
+        }
+
     }
 
     public function getUser () {
@@ -32,6 +37,4 @@ class UserController extends Controller
     public function getRanking () {
         return $this->UserService->getRanking();
     }
-
-
 }
