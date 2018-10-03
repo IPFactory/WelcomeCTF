@@ -12,7 +12,7 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        DB::insert("
+        DB::connection('mysql')->insert("
             INSERT INTO `Category` (`id`,`category`) VALUES
             (1,'Misc'),
             (2,'Forensics'),

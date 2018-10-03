@@ -12,7 +12,7 @@ class AuthorSeeder extends Seeder
      */
     public function run()
     {
-        DB::insert("
+        DB::connection('mysql')->insert("
             INSERT INTO `Author`(`id`,`name`,`link`) VALUES
             (1,'smicle','https://twitter.com/smicle_cl'),
             (2,'somebody_gp','https://twitter.com/somebody_gp'),
