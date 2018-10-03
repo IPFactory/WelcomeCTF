@@ -15,6 +15,7 @@
 
 Route::group(["middleware"=>"web"],function () {
     //Default Rout
+    Route::get('file/{file_name}',  'File\\FileController@getProblemFile');
     Route::get('/{any}', function () {
         return view('app');
     })->where('any', '.*');
