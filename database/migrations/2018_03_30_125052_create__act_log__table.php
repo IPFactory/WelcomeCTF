@@ -8,7 +8,7 @@ class CreateActLogTable extends Migration
 {
     public function up()
     {
-        Schema::connection('score')->create('ActiveLogs', function (Blueprint $table) {
+        Schema::connection('mysql')->create('ActiveLogs', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('problem_id');
