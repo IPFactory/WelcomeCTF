@@ -21,6 +21,7 @@ Route::group(['middleware' => 'api'],function(){
     Route::get('ranking',           'User\\UserController@getRanking');
     Route::get('problem/all',       'Problem\\ProblemController@getProblemList');
     Route::get('problem/{id}',      'Problem\\ProblemController@getProblemInfo');
+    Route::post('submit/{probId}',  'Subumit\\SubumitController@postSubumit');
     Route::post('regist/digest',    'Auth\\AuthenticateController@registInDigest');
     Route::post('login/twitter',    'Auth\\AuthenticateController@authenticateInTwitter');
     Route::post('login/github',     'Auth\\AuthenticateController@authenticateInTwitter');
