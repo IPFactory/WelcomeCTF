@@ -16,6 +16,7 @@
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.5",
+        "league/flysystem-aws-s3-v3": "^1.0",
         "nesbot/carbon": "^1.32",
         "nutsweb/laravel-prerender": "^2.0",
         "olssonm/l5-very-basic-auth": "^4.0",
