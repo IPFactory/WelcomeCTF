@@ -8,7 +8,7 @@ class CreateProblemsTable extends Migration
 {
     public function up()
     {
-        Schema::create('Problems', function (Blueprint $table) {
+        Schema::connection('mysql')->create('Problems', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
             $table->integer('category');
@@ -26,6 +26,6 @@ class CreateProblemsTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('problems');
+        Schema::connection('mysql')->dropIfExists('problems');
     }
 }

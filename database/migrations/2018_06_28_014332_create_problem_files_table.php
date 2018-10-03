@@ -13,7 +13,7 @@ class CreateProblemFilesTable extends Migration
      */
     public function up()
     {
-        Schema::create('Problem_files', function (Blueprint $table) {
+        Schema::connection('mysql')->create('Problem_files', function (Blueprint $table) {
             $table->integer('id');
             $table->mediumText('first_data')->nullable();
             $table->mediumText('second_data')->nullable();
@@ -28,6 +28,6 @@ class CreateProblemFilesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('problem_files');
+        Schema::connection('mysql')->dropIfExists('problem_files');
     }
 }

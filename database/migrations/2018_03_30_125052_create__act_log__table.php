@@ -8,7 +8,7 @@ class CreateActLogTable extends Migration
 {
     public function up()
     {
-        Schema::create('ActiveLogs', function (Blueprint $table) {
+        Schema::connection('score')->create('ActiveLogs', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('problem_id');
@@ -22,6 +22,6 @@ class CreateActLogTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('activeLogs');
+        Schema::connection('score')->dropIfExists('activeLogs');
     }
 }

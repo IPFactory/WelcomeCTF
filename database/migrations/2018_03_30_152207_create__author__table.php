@@ -8,7 +8,7 @@ class CreateAuthorTable extends Migration
 {
     public function up()
     {
-        Schema::create('Author', function (Blueprint $table) {
+        Schema::connection('mysql')->create('Author', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('link');
@@ -17,6 +17,6 @@ class CreateAuthorTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('author');
+        Schema::connection('mysql')->dropIfExists('author');
     }
 }

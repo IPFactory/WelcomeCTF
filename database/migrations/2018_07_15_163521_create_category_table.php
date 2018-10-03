@@ -13,7 +13,7 @@ class CreateCategoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('Category', function (Blueprint $table) {
+        Schema::connection('mysql')->create('Category', function (Blueprint $table) {
             $table->integer('id');
             $table->text('category');
             $table->timestamps();
@@ -27,7 +27,7 @@ class CreateCategoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('category');
+        Schema::connection('mysql')->dropIfExists('category');
 
     }
 }
