@@ -26,6 +26,6 @@ class CreateProblemsTable extends Migration
 
     public function down()
     {
-        Schema::connection('mysql')->dropIfExists('problems');
+        Schema::connection('mysql')->dropIfExists('Problems');
     }
 }

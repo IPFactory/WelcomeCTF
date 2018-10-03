@@ -22,6 +22,6 @@ class CreateActLogTable extends Migration
 
     public function down()
     {
-        Schema::connection('score')->dropIfExists('activeLogs');
+        Schema::connection('score')->dropIfExists('ActiveLogs');
     }
 }

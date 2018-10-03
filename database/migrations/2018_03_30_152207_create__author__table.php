@@ -17,6 +17,6 @@ class CreateAuthorTable extends Migration
 
     public function down()
     {
-        Schema::connection('mysql')->dropIfExists('author');
+        Schema::connection('mysql')->dropIfExists('Author');
     }
 }

@@ -29,6 +29,6 @@ class CreateSocialAccountTable extends Migration
      */
     public function down()
     {
-        Schema::connection('mysql')->dropIfExists('social_accounts');
+        Schema::connection('mysql')->dropIfExists('Social_accounts');
     }
 }

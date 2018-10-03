@@ -27,7 +27,7 @@ class CreateCategoryTable extends Migration
      */
     public function down()
     {
-        Schema::connection('mysql')->dropIfExists('category');
+        Schema::connection('mysql')->dropIfExists('Category');
 
     }
 }
