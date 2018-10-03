@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProblemFile extends Model
 {
-    protected $table        = 'Problem_files';
-    protected $connection   = 'mysql';
+    protected $table        = 'Problem_flags';
+    protected $connection   = 'score';
 
     /**
      * The attributes that are mass assignable.
@@ -16,7 +16,7 @@ class ProblemFile extends Model
      * @var array
      */
     protected $fillable = [
-        'id','first_data','second_data'
+        'id','correct_flag'
     ];
     protected $hidden = [
 

@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Problem extends Model
 {
-    protected $table = 'Problems';
+    protected $table        = 'Problems';
+    protected $connection   = 'mysql';
 
     /**
      * The attributes that are mass assignable.

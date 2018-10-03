@@ -13,7 +13,7 @@ class CreateSocialAccountTable extends Migration
      */
     public function up()
     {
-        Schema::create('Social_accounts', function (Blueprint $table) {
+        Schema::connection('mysql')->create('Social_accounts', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
             $table->bigInteger('provider_id');
@@ -29,6 +29,6 @@ class CreateSocialAccountTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('social_accounts');
+        Schema::connection('mysql')->dropIfExists('social_accounts');
     }
 }
