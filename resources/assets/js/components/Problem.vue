@@ -32,11 +32,11 @@
             <div id="file">
                 <div id="file-link" >
                     <p>File</p>
-                    <a :href='"../ctffiles/"+problemList.file1' target="_blank"></a>
+                    <a :href='"/file/"+problemList.file1'></a>
                 </div>
                 <div id="file-link" v-if=problemList.file2 >
                     <p>File</p>
-                    <a :href='"../ctffiles/"+problemList.file2' target="_blank"></a>
+                    <a :href='"/file/"+problemList.file2'></a>
                 </div>
             </div>
             </div>
