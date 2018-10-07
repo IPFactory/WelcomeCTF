@@ -2,15 +2,26 @@
 
 namespace App\Service;
 
+use Exception;
+use PDOException;
 use App\Model\Problem   as Problem;
 use App\Model\ActiveLog as ActiveLog;
 use App\Model\Category  as Category;
 use App\Model\Flag      as Flag;
+use App\Model\Submit    as Submit;
 
-class SubmitService {
+class SubmitService
+{
 
     private $user;
     private $request;
+
+    //エラーメッセージ
+    const NOT_FOUND = 'There is no problem number like that.';
+    const BAD_REQ   = '
+    An error occurred in submit.
+    Please contact the operator if there is an error multiple times.
+    ';
 
     public function __construct ($user, $request){
         $this->user     = $user;
@@ -19,8 +30,13 @@ class SubmitService {
 
 
     public function submit ($problemId) {             //サブミット
-        try {
 
+        try {
+            if( gettype($id) != 'integer' ) {
+
+                return response()->json(['error' => NOT_FOUND ], 404);
+
+            }
             //アクティブログに書き込み
             ActiveLog::insert([
                 'user_id'       =>  $this->user->id,
@@ -31,10 +47,7 @@ class SubmitService {
 
         } catch (PDOException $e) {
 
-            return response()->json(['error' => '
-            An error occurred in submit.
-            Please contact the operator if there is an error multiple times.
-            '], 401);
+            return response()->json(['error' => BAD_REQ ], 400);
 
         }
         return true;
@@ -42,26 +55,19 @@ class SubmitService {
 
     public function flagVerifi ($problemId) {   //フラグ検証
 
-        //エラーメッセージ
-        $defaultErrorMes= 'There is no problem number like that.';
-        $catcheErrorMes = '
-        An error occurred in submit.
-        Please contact the operator if there is an error multiple times.
-        ';
-
         try {
 
             //IDの存在確認
             if ( !Problem::find($problemId) ){
 
-                return response()->json(['error' => $defaultErrorMes ], 404);
+                return response()->json(['error' => NOT_FOUND ], 404);
 
             }
 
             //flagの形式確認
             if ( !preg_match("/^(welcomeCTF)\{[\s\w\W]{1,}\}$/",$flag) ) {
 
-                return response()->json(['error' => $defaultErrorMes ], 404);
+                return response()->json(['error' => NOT_FOUND ], 404);
 
             }
 
@@ -71,24 +77,24 @@ class SubmitService {
 
             if ( !$flag ) {
 
-                return response()->json(['error' => $defaultErrorMes ], 404);
+                return response()->json(['error' => NOT_FOUND ], 404);
 
             }
 
             //文字列の比較
             if ( !strcmp($flag, $this->request->flag) ) {
 
-                return response()->json(['error' => $defaultErrorMes ], 404);
+                return response()->json(['error' => NOT_FOUND ], 404);
 
             }
 
         } catch (PDOException  $e) {
 
-            return response()->json(['error' => $catcheErrorMes ], 401);
+            return response()->json(['error' => BAD_REQ ], 400);
 
         } catch (Exception $e) {
 
-            return response()->json(['error' => $catcheErrorMes], 401);
+            return response()->json(['error' => BAD_REQ], 400);
 
         }
         return true;
@@ -103,12 +109,47 @@ class SubmitService {
                 ->join('Users','ActiveLogs.user_id','=','Users.id')
                 ->where('Users.id',$this->user->id)->groupBy('Users.id')->get();
 
-        $point = $point[0]->point;
-        
-        return  ;
+        try {
+
+            $userScore = Submit::find($this->user->id);
+
+            if ( !$userScore ) {
+
+                $newScore           = new Submit;
+
+                $newScore->id       = $this->user->id;
+                $newScore->point    = 0;
+
+                $newScore->save();
+                $userScore = $newScore;
+
+            }
+
+            $userScore->point = $point[0]->point;
+            $userScore->save();
+
+        } catch (PDOException  $e) {
+
+            return response()->json(['error' => BAD_REQ ], 400);
+
+        }
+        return  true;
     }
 
     public function tamperPrevention() {    //スコアサーバー改ざん防止(暫定)
-        return  ;
+
+        $pointActLog =
+        Problem::selectRaw('sum(Problems.point) as point')
+                ->join('ActiveLogs','ActiveLogs.problem_id', '=', 'Problems.id')
+                ->join('Users','ActiveLogs.user_id','=','Users.id')
+                ->where('Users.id',$this->user->id)->groupBy('Users.id')->get();
+
+        $pointScore  = Submit::select('point')->where('id', $this->user->id)->get();
+
+        if ($pointActLog == $pointScore) {
+            //処理をどうしよう
+        }
+        return  null ;
+
     }
 }
