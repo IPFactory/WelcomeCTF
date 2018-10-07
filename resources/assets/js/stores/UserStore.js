@@ -22,7 +22,7 @@ export default {
         })
     },
 
-    regist (email, userName, password, password_check, successCb = null, errorCb = null) {
+    regist ( email, userName, password, password_check, successCb = null, errorCb = null ) {
         var regist_param = {email: email, userName: userName, password: password, password_confirmation: password_check}
         http.post('/regist/digest', regist_param, res => {
             this.state.user = res.data.user
@@ -33,7 +33,8 @@ export default {
             errorCb()
         })
     },
-    logout (successCb = null, errorCb = null) {
+
+    logout ( successCb = null, errorCb = null ) {
         http.get('logout', res => {
             localStorage.removeItem('jwt-token')
             this.state.authenticated = false
@@ -59,6 +60,14 @@ export default {
         })
     },
 
+    solved (problemFlag, problemId, successCb = null, errorCb = null) {
+        var solved = { flag : problemFlag };
+        http.post('/submit/'.problemId, solved, res => {
+            successCb()
+        }, error => {
+            errorCb()
+        })
+    },
     /**
     * Init the store.
     */

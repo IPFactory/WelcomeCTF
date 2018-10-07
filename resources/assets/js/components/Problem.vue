@@ -43,7 +43,7 @@
             <div id="submit-zone">
                 <label>Flag:</label>
                 <form>
-                    <input type="text" id="problem-flag" name="problemFlag">
+                    <input type="text" id="problem-flag" name="problemFlag" v-model='problemFlag' placeholder="welcomeCTF{xxxxxxxXXXXXX}" @keyup.enter='solveFlag' required autofocus>
                 </form>
                 <div id="submit-button" @click="solveFlag()">
     				<b>SUBMIT</b>
@@ -56,6 +56,7 @@
 </template>
 <script>
 import http from "../service/http"
+import userStore from '../stores/UserStore';
 
 export default {
     props:["show"],
@@ -72,6 +73,7 @@ export default {
             isHintOpen  : false,
             isSolve     : false,
             problemList : [],
+            problemFlag : '',
         }
     },
     methods : {
@@ -92,7 +94,9 @@ export default {
             this.isSolve = false;
         },
         solveFlag () {
-            this.isSolve = true;
+            userStore.solved(this.problemFlag, this.$route.params.id,res => {
+                this.isSolve = true;
+            });
         },
         isAuth () {
             if (!this.show) {
