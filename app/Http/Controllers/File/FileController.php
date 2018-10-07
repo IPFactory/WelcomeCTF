@@ -37,9 +37,12 @@ class FileController extends Controller
                 ->get();
 
         if( !isset($file_name) || !isset($find[0]->id) ){
+
             return redirect("/main");
+            
         }
 
-        return Storage::disk('s3')->download("ctffiles/".$file_name);;
+        return Storage::disk('s3')->download("ctffiles/".$file_name);
+
     }
 }
