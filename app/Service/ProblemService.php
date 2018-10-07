@@ -16,7 +16,7 @@ class ProblemService
 
     public function getInfo ($id) {
 
-        if( gettype($id) != 'integer' ) {
+        if( !preg_match("/^[0-9]{,3}$/",$id) ) {
 
             return response()->json(['error' => '指定した問題番号がInt型ではない。' ], 404);
 
