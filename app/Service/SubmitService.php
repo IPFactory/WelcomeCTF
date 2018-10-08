@@ -16,12 +16,6 @@ class SubmitService
     private $user;
     private $request;
 
-    //エラーメッセージ
-    const NOT_FOUND = 'There is no problem number like that.';
-    const BAD_REQ   = '
-    An error occurred in submit.
-    Please contact the operator if there is an error multiple times.
-    ';
 
     public function __construct ($user, $request){
         $this->user     = $user;
@@ -32,11 +26,11 @@ class SubmitService
     public function submit ($problemId) {             //サブミット
 
         try {
-            if( gettype($id) != 'integer' ) {
-
-                return response()->json(['error' => NOT_FOUND ], 404);
-
+            $find = ActiveLog::where([ ['problem_id',$problemId], ['user_id', $this->user->id ] ])->get();
+            if( !empty($find[0]) ) {
+                return false;
             }
+
             //アクティブログに書き込み
             ActiveLog::insert([
                 'user_id'       =>  $this->user->id,
@@ -47,7 +41,7 @@ class SubmitService
 
         } catch (PDOException $e) {
 
-            return response()->json(['error' => BAD_REQ ], 400);
+            return false;
 
         }
         return true;
@@ -56,51 +50,43 @@ class SubmitService
     public function flagVerifi ($problemId) {   //フラグ検証
 
         try {
+            //数値の取り間違え防止
+            if( !preg_match("/^[0-9]*$/",$problemId) ) {
+                return false;
+            }
 
             //IDの存在確認
             if ( !Problem::find($problemId) ){
-
-                return response()->json(['error' => NOT_FOUND ], 404);
-
+                return false;
             }
 
             //flagの形式確認
-            if ( !preg_match("/^(welcomeCTF)\{[\s\w\W]{1,}\}$/",$flag) ) {
-
-                return response()->json(['error' => NOT_FOUND ], 404);
-
+            if ( !preg_match("/^(welcomeCTF)\{[\s\w\W]{1,}\}$/",$this->request->flag) ) {
+                return false;
             }
 
             //flagの存在確認
             $flag   = Flag::where('correct_flag',$this->request->flag)->select('correct_flag')->get();
-            $flag   = $flag[0]->flag;
+            $flag   = $flag[0]->correct_flag;
 
             if ( !$flag ) {
-
-                return response()->json(['error' => NOT_FOUND ], 404);
-
+                return false;
             }
 
             //文字列の比較
-            if ( !strcmp($flag, $this->request->flag) ) {
-
-                return response()->json(['error' => NOT_FOUND ], 404);
-
+            if ( strcmp($flag, $this->request->flag) ) {
+                return false;
             }
 
         } catch (PDOException  $e) {
-
-            return response()->json(['error' => BAD_REQ ], 400);
-
+            return false;
         } catch (Exception $e) {
-
-            return response()->json(['error' => BAD_REQ], 400);
-
+            return false;
         }
         return true;
     }
 
-    public function regularly () {          //ポイントの定期更新
+    public function regularly ($problemId) {          //ポイントの定期更新
 
         //アクティブログの総ポイントを取得
         $point =
@@ -114,7 +100,7 @@ class SubmitService
             $userScore = Submit::find($this->user->id);
 
             if ( !$userScore ) {
-
+                //もしユーザーが存在しなかった場合、ユーザーを制作
                 $newScore           = new Submit;
 
                 $newScore->id       = $this->user->id;
@@ -130,7 +116,7 @@ class SubmitService
 
         } catch (PDOException  $e) {
 
-            return response()->json(['error' => BAD_REQ ], 400);
+            return false;
 
         }
         return  true;
@@ -149,7 +135,7 @@ class SubmitService
         if ($pointActLog == $pointScore) {
             //処理をどうしよう
         }
-        return  null ;
+        return  false ;
 
     }
 }
