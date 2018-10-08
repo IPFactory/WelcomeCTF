@@ -62,7 +62,7 @@ export default {
 
     solved (problemFlag, problemId, successCb = null, errorCb = null) {
         var solved = { flag : problemFlag };
-        http.post('/submit/'.problemId, solved, res => {
+        http.post('/submit/'+problemId, solved, res => {
             successCb()
         }, error => {
             errorCb()
