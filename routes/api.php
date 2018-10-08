@@ -20,8 +20,8 @@ Route::group(['middleware' => 'api'],function(){
     Route::get('user/list',         'User\\UserController@getList');
     Route::get('ranking',           'User\\UserController@getRanking');
     Route::get('problem/all',       'Problem\\ProblemController@getProblemList');
+    Route::get('problem/info/{id}',      'Problem\\ProblemController@getProblemInfo');
     Route::get('problem/{cate}',    'Problem\\ProblemController@getProblemListCate');
-    Route::get('problem/{id}',      'Problem\\ProblemController@getProblemInfo');
     Route::post('submit/{probId}',  'Submit\\SubmitController@postSubmit');
     Route::post('regist/digest',    'Auth\\AuthenticateController@registInDigest');
     Route::post('login/twitter',    'Auth\\AuthenticateController@authenticateInTwitter');

@@ -13,6 +13,7 @@
             window.Laravel = {};
             window.Laravel.csrfToken = "{{ csrf_token() }}";
             window.Laravel.message = "{{ Session::get('success') }}";
+            window.problems = []; 
         </script>
         <link rel="stylesheet" href="{{mix('css/app.css')}}">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" />

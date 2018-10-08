@@ -79,7 +79,7 @@ export default {
     },
     methods : {
         getProblemData () {
-            http.get('/problem/'+this.$route.params.id,res => {
+            http.get('/problem/info/'+this.$route.params.id,res => {
                 this.problemList = res.data[0]
             });
         },
