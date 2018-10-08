@@ -738,7 +738,7 @@
                         width: 80%;
                     }
                 }
-                #hint{
+                #hint, #submit-info{
                     background: #e1efd9;
                     color: #000;
                     font-size: 20px;
@@ -808,16 +808,14 @@
                         margin:0px;
                         width: 100%;
                     }
-                    form{
+                    #problem-flag{
                         margin:0px;
                         width: 100%;
-                        #problem-flag{
-                            border-radius:      15px;
-                            width: 100%;
-                            height: 60px;
-                            box-shadow:             3px 5px 3px rgba(0,0,0,0.3);
-                            font-size: 35px;
-                        }
+                        border-radius:      15px;
+                        width: 100%;
+                        height: 60px;
+                        box-shadow:             3px 5px 3px rgba(0,0,0,0.3);
+                        font-size: 35px;
                     }
                     #submit-button{
                         background-color:   #b3c6e6;
@@ -1092,7 +1090,7 @@
                             padding: 20px 0px;
                         }
                     }
-                    #hint{
+                    #hint, #submit-info{
                         font-size: 20px;
                         div{
                             padding: 20px 0px;
@@ -1358,7 +1356,7 @@
                             padding: 20px 0px;
                         }
                     }
-                    #hint{
+                    #hint, #submit-info{
                         font-size: 20px;
                         div{
                             padding: 20px 0px;
@@ -1625,7 +1623,7 @@
                             padding: 20px 0px;
                         }
                     }
-                    #hint{
+                    #hint, #submit-info{
                         font-size: 20px;
                         div{
                             padding: 20px 0px;
@@ -1900,7 +1898,7 @@
                             padding: 20px 0px;
                         }
                     }
-                    #hint{
+                    #hint, #submit-info{
                         font-size: 20px;
                         div{
                             padding: 20px 0px;
