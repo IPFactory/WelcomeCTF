@@ -40,11 +40,12 @@
                 </div>
             </div>
             </div>
+            <div id="submit-info" v-if="problemList.isSolve||this.isSolve">
+                <div>Conlation!!</div>
+            </div>
             <div id="submit-zone">
                 <label>Flag:</label>
-                <form>
-                    <input type="text" id="problem-flag" name="problemFlag" v-model='problemFlag' placeholder="welcomeCTF{xxxxxxxXXXXXX}" @keyup.enter='solveFlag' required autofocus>
-                </form>
+                <input type="text" id="problem-flag" name="problemFlag" v-model='problemFlag' placeholder="welcomeCTF{xxxxxxxXXXXXX}" @keyup.enter='solveFlag' required autofocus>
                 <div id="submit-button" @click="solveFlag()">
     				<b>SUBMIT</b>
     			</div>
@@ -96,7 +97,7 @@ export default {
         solveFlag () {
             userStore.solved(this.problemFlag, this.$route.params.id,res => {
                 this.isSolve = true;
-            });
+            },error => {});
         },
         isAuth () {
             if (!this.show) {
