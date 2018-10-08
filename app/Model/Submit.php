@@ -5,7 +5,7 @@ namespace App\Model;
 use Illuminate\Database\Eloquent\Model;
 
 
-class ProblemFile extends Model
+class Submit extends Model
 {
     protected $table        = 'Score_server';
     protected $connection   = 'score';

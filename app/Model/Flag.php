@@ -5,7 +5,7 @@ namespace App\Model;
 use Illuminate\Database\Eloquent\Model;
 
 
-class ProblemFile extends Model
+class Flag extends Model
 {
     protected $table        = 'Problem_flags';
     protected $connection   = 'score';
