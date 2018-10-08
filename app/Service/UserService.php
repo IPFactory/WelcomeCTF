@@ -3,6 +3,8 @@
 namespace App\Service;
 
 use App\Model\Problem   as Problem;
+use App\Model\User      as User;
+
 use App\Model\ActiveLog as ActiveLog;
 use App\Model\Category  as Category;
 
@@ -18,7 +20,10 @@ class UserService
     }
 
     public function getInfo () {
-
+        $find = ActiveLog::where("user_id", $this->user->id)->get();
+        if ( empty($find[0]) ) {
+            return User::selectRaw('name as user, 0 as solved, 0 as point, 0 as rank')->where("id",$this->user->id)->get();
+        }
         return  Problem::selectRaw(
                     'distinct Users.name as user,
                     count(*) as solved,
