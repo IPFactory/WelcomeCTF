@@ -36,5 +36,9 @@ class ProblemController extends Controller
         return $this->ProblemService->getList();
     }
 
+    public function getProblemListCate ($cate) {
+        return $this->ProblemService->getListCate($cate);
+    }
+
 
 }
