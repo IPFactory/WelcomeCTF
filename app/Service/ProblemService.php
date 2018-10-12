@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use Carbon\Carbon;
 use App\Model\Problem as Problem;
 use App\Model\ActiveLog as ActiveLog;
 
@@ -11,6 +12,7 @@ class ProblemService
     private $user;
 
     public function __construct ($user) {
+
         $this->user = $user;
     }
 
@@ -22,6 +24,9 @@ class ProblemService
 
         }
 */
+        if(self::ctfStartDate()){
+            return response()->json(['error' => 'Do Not CTF'], 412);
+        }
         $response = Problem::leftJoin('Problem_files', 'Problems.id', '=', 'Problem_files.id')
                     ->join('Category', 'Problems.category', '=', 'Category.id')
                     ->join('Author', 'Problems.author_id', '=', 'Author.id')
@@ -50,7 +55,9 @@ class ProblemService
     }
 
     public function getList () {
-
+        if(self::ctfStartDate()){
+            return response()->json(['error' => 'Do Not CTF '], 412);
+        }
         $sub_query =ActiveLog::select('problem_id', 'user_id')->where('user_id', $this->user)->orderBy('problem_id', 'ASC');
 
         $response  =Problem::selectRaw('
@@ -69,6 +76,9 @@ class ProblemService
 
 
     public function getListCate ($category) {
+        if(self::ctfStartDate()){
+            return response()->json(['error' => 'Do Not CTF '], 412);
+        }
         switch ( strtolower($category) ) {
             case strtolower('Misc'):
                 $cateId = 1;
@@ -115,6 +125,22 @@ class ProblemService
 
         return $response->mergeBindings($sub_query->getQuery())->where( [ ['Category.id', "=", $cateId] ] )->get();
 
+    }
+
+    private function ctfStartDate () {
+        $start_date = Carbon::parse($_ENV['CTF_START_DATE'])->setTimezone($_ENV['TIME_ZONE'])->subHour(9);
+        $end_date   = Carbon::parse($_ENV['CTF_END_DATE'])->setTimezone($_ENV['TIME_ZONE'])->subHour(9);
+        $now_date   = Carbon::now()->setTimezone($_ENV['TIME_ZONE'])->subHour(9);
+/*
+
+        echo var_dump($start_date->timestamp > $now_date->timestamp)."<br>";
+        echo var_dump($now_date->timestamp > $end_date->timestamp)."<br>";
+        echo $start_date->timestamp."<br>".$end_date->timestamp."<br>".$now_date->timestamp."<br>";
+*/
+        if ( $start_date > $now_date || $now_date > $end_date ) {
+            return 1;
+        }
+        return 0;
     }
 
 }
