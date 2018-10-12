@@ -14,9 +14,9 @@
             <p><b>LOGIN</b></p>
         </div>
         <div v-if="!show" id="message">
-            <p id="auth_link"><router-link to="/login" id="auth_link"><b>DIGEST</b></router-link></p>
-            <p id="auth_link"><a href="#" id="auth_link"><b style="color:#1ca1f2;">Twitter</b></a></p>
-            <p id="auth_link"><a href="#" id="auth_link"><b style="color:#394148;">GitHub</b></a></p>
+            <p id="auth_link"><router-link to="/login" id="auth_link"><b>Login!</b></router-link></p>
+            <p id="auth_link"><a href="#" id="auth_link" v-if=false><b style="color:#1ca1f2;">Twitter</b></a></p>
+            <p id="auth_link"><a href="#" id="auth_link" v-if=false><b style="color:#394148;">GitHub</b></a></p>
             <p id="auth_link"><router-link to="/regist" id="auth_link"><b>Regist</b></router-link></p>
         </div>
         <!--

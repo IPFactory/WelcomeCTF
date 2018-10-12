@@ -1,8 +1,10 @@
 <template>
     <div id="score-board">
-        <div id="score-graph">
+        
+        <div id="score-graph" v-if=false>
             <score :datas=datas :labels=labels></score>
         </div>
+
         <div id="score-table">
             <table>
                 <caption>Ranking</caption>

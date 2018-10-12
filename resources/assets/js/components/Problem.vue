@@ -81,6 +81,7 @@ export default {
         getProblemData () {
             http.get('/problem/info/'+this.$route.params.id,res => {
                 this.problemList = res.data[0]
+                console.log(res.data[0]);
             });
         },
         openHint () {
