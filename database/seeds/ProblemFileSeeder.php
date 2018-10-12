@@ -27,7 +27,8 @@ class ProblemFileSeeder extends Seeder
             (17,'Final_task.zip',NULL,NULL,NULL),
             (18,'File_Recovery.png',NULL,NULL,NULL),
             (19,'flag.pcap',NULL,NULL,NULL),
-            (20,'hide_and_seek',NULL,NULL,NULL);
+            (20,'hide_and_seek',NULL,NULL,NULL),
+            (24,'First_Pwn',NULL,NULL,NULL);
         ");
     }
 }

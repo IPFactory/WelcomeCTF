@@ -37,7 +37,8 @@ class ProblemFlagSeeder extends Seeder
             (21,'welcomeCTF{console.log(!0,1e4,2<<20)}',0,NULL,NULL),
             (22,'welcomeCTF{THE_NORTH_WIND_AND_THE_SUN}',0,NULL,NULL),
             (23,'welcomeCTF{pasopi}',0,NULL,NULL),
-            (24,'welcomeCTF{C0n6r4tul4ti0n5!!Y0u_4repr0!!}',0,NULL,NULL);
+            (24,'welcomeCTF{C0n6r4tul4ti0n5!!Y0u_4repr0!!}',0,NULL,NULL),
+            (25,'welcomeCTF{Th1s_ch4ll3ng3_1s_p3rf3ct_f0r_alias_traversal!}',0,NULL,NULL);
         ");
     }
 }
