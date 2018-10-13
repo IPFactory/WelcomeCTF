@@ -143,4 +143,20 @@ class ProblemService
         return 0;
     }
 
+    public function time () {
+        $start_date = Carbon::parse($_ENV['CTF_START_DATE'])->setTimezone($_ENV['TIME_ZONE'])->subHour(9);
+        $end_date   = Carbon::parse($_ENV['CTF_END_DATE'])->setTimezone($_ENV['TIME_ZONE'])->subHour(9);
+        $now_date   = Carbon::now()->setTimezone($_ENV['TIME_ZONE'])->subHour(9);
+
+        $return     = [
+            '開始時刻' => $start_date,
+            'timestamp' =>$start_date->timestamp,
+            '現在時刻' => $now_date,
+            'timestamp' =>$start_date->timestamp,
+            '終了時刻' => $end_date,
+            'timestamp' =>$start_date->timestamp,
+        ];
+        return json_encode($return);
+    }
+
 }

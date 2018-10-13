@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Storage;
 use nesbot\carbon;
 use App\Model\User      as User;
 use App\Model\ActiveLog as ActiveLog;
 use App\Model\Problem   as Problem;
 use App\Model\Category  as Category;
+use App\Service\ProblemService as ProblemService;
 
 
 class hoge extends Controller
@@ -21,7 +23,8 @@ class hoge extends Controller
     ORDER BY problems.id ASC;
     *
     */
-    public function hoge () {
-        return  ActiveLog::where('user_id', 1)->orderBy('created_at', 'DESC')->limit(1)->get(['created_at']);
+    public function hoge (Request $Request) {
+        $this->ProblemService =   new ProblemService(1);
+        $this->ProblemService->time();
     }
 }
