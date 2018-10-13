@@ -144,17 +144,17 @@ class ProblemService
     }
 
     public function time () {
-        $start_date = Carbon::parse($_ENV['CTF_START_DATE'])->setTimezone($_ENV['TIME_ZONE'])->subHour(9);
-        $end_date   = Carbon::parse($_ENV['CTF_END_DATE'])->setTimezone($_ENV['TIME_ZONE'])->subHour(9);
-        $now_date   = Carbon::now()->setTimezone($_ENV['TIME_ZONE'])->subHour(9);
+        $start_date = Carbon::parse($_ENV['CTF_START_DATE'])->setTimezone($_ENV['TIME_ZONE']);
+        $end_date   = Carbon::parse($_ENV['CTF_END_DATE'])->setTimezone($_ENV['TIME_ZONE']);
+        $now_date   = Carbon::now()->setTimezone($_ENV['TIME_ZONE']);
 
         $return     = [
             '開始時刻' => $start_date,
-            'timestamp' =>$start_date->timestamp,
+            '開始時刻timestamp' =>$start_date->timestamp,
             '現在時刻' => $now_date,
-            'timestamp' =>$start_date->timestamp,
+            '現在時刻timestamp' =>$now_date->timestamp,
             '終了時刻' => $end_date,
-            'timestamp' =>$start_date->timestamp,
+            '終了時刻timestamp' =>$end_date->timestamp,
         ];
         return json_encode($return);
     }
