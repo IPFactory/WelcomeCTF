@@ -8,7 +8,7 @@
             <h1>競技形式</h1>
             <p>Jeopardy</p>
             <h1>競技時間</h1>
-            <p>XXXX - MM - DD hh:mm:ss ~ XXXX - MM - DD hh:mm:ss</p>
+            <p>2018 - 10 - 13 13:00:00 ~ 2018 - 10 - 13 16:00:00</p>
         </div>
         <div v-if="!show" id="body_band">
             <p><b>LOGIN</b></p>
