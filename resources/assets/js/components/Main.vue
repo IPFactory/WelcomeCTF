@@ -3,13 +3,13 @@
     <div class="container">
         <div id="body_band">
             <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <a id="btn" class="col-lg-3 col-md-3 col-sm-3 col-xs-3" @click="getProblems()">ALL</a>
                 <a id="btn" class="col-lg-3 col-md-3 col-sm-3 col-xs-3" @click="getProblemsCate('MISC')" >MISC</a>
                 <a id="btn" class="col-lg-3 col-md-3 col-sm-3 col-xs-3" @click="getProblemsCate('PPC')" >PPC</a>
                 <a id="btn" class="col-lg-3 col-md-3 col-sm-3 col-xs-3" @click="getProblemsCate('CRYPT')" >CRYPT</a>
-                <a id="btn" class="col-lg-3 col-md-3 col-sm-3 col-xs-3" @click="getProblemsCate('WEB')">WEB</a>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                <a id="btn" class="col-lg-3 col-md-3 col-sm-3 col-xs-3" @click="getProblemsCate('BIN')">BIN</a>
+                <a id="btn" class="col-lg-3 col-md-3 col-sm-3 col-xs-3" @click="getProblemsCate('WEB')">WEB</a>
                 <a id="btn" class="col-lg-3 col-md-3 col-sm-3 col-xs-3" @click="getProblemsCate('PWN')">PWN</a>
                 <a id="btn" class="col-lg-3 col-md-3 col-sm-3 col-xs-3" @click="getProblemsCate('NET')">NET</a>
                 <a id="btn" class="col-lg-3 col-md-3 col-sm-3 col-xs-3" @click="getProblemsCate('FOR')">FOR</a>

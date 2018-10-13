@@ -22,7 +22,7 @@ class ProblemFileSeeder extends Seeder
             (10,'Infomation.jpg',NULL,NULL,NULL),
             (11,'you_are_web_developer.zip',NULL,NULL,NULL),
             (12,'Use_your_eyes',NULL,NULL,NULL),
-            (14,'image_file.7z',NULL,NULL,NULL),
+            (14,'image_file.zip',NULL,NULL,NULL),
             (15,'extraction.png',NULL,NULL,NULL),
             (17,'Final_task.zip',NULL,NULL,NULL),
             (18,'File_Recovery.png',NULL,NULL,NULL),

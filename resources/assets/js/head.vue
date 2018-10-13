@@ -9,10 +9,10 @@
                     <router-link to="/login" class="col-lg-4 col-sm-4" id="btn" style="color:#fff;">
                         <p>Login</p>
                     </router-link>
-                    <router-link to="/" class="col-lg-4 col-sm-4" id="btn" style="color:#1ca1f2;">
-                        <p>Twitter</p>
+                    <router-link to="/regist" class="col-lg-4 col-sm-4" id="btn" style="color:#1ca1f2;">
+                        <p>Regist</p>
                     </router-link>
-                    <router-link to="/" class="col-lg-4 col-sm-4" id="btn" style="color:#394148;">
+                    <router-link to="/" class="col-lg-4 col-sm-4" id="btn" style="color:#394148;" v-if=false>
                         <p>GitHub</p>
                     </router-link>
                 </div>

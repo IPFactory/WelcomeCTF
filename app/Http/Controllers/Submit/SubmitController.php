@@ -7,7 +7,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use App\Http\Controllers\Controller;
-use App\Service\submitService as submitService;
+use App\Service\SubmitService as SubmitService;
 
 
 class SubmitController extends Controller

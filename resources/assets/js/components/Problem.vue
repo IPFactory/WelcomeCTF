@@ -41,7 +41,7 @@
             </div>
             </div>
             <div id="submit-info" v-if="problemList.isSolve||this.isSolve">
-                <div>Conlation!!</div>
+                <div>Congratulations!!</div>
             </div>
             <div id="submit-zone">
                 <label>Flag:</label>
