@@ -144,8 +144,8 @@ class ProblemService
     }
 
     public function time () {
-        $start_date = Carbon::parse($_ENV['CTF_START_DATE'])->setTimezone($_ENV['TIME_ZONE']);
-        $end_date   = Carbon::parse($_ENV['CTF_END_DATE'])->setTimezone($_ENV['TIME_ZONE']);
+        $start_date = Carbon::parse($_ENV['CTF_START_DATE'])->setTimezone($_ENV['TIME_ZONE'])->subHour(9);
+        $end_date   = Carbon::parse($_ENV['CTF_END_DATE'])->setTimezone($_ENV['TIME_ZONE'])->subHour(9);
         $now_date   = Carbon::now()->setTimezone($_ENV['TIME_ZONE']);
 
         $return     = [
