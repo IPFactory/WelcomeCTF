@@ -25,6 +25,6 @@ class hoge extends Controller
     */
     public function hoge (Request $Request) {
         $this->ProblemService =   new ProblemService(1);
-        $this->ProblemService->time();
+        return $this->ProblemService->time();
     }
 }
